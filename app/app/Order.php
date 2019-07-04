@@ -28,6 +28,7 @@ class Order extends Eloquent
         'color',
         'shaped',
         'handles',
+        'price',
         'status'
     ];
 

@@ -11,13 +11,13 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <label for="color">Color:</label>
+                            <label for="color">Color</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <label for="Price">Measures:</label>
+                            <label for="Price">Measures</label>
                             <input type="text" class="form-control" name="measures" value="{{$order->measures}}">
                         </div>
                     </div>

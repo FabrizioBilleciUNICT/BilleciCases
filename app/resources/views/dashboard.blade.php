@@ -18,6 +18,7 @@
                         <th>Color</th>
                         <th>Handles</th>
                         <th>Shaped</th>
+                        <th>Price</th>
                         <th>Status</th>
                         <th> </th>
                         <th> </th>
@@ -35,6 +36,7 @@
                             <td>{{$p->color}}</td>
                             <td>{{$p->handles}}</td>
                             <td>{{$p->shaped}}</td>
+                            <td>{{$p->price}}</td>
                             <td class="td-status">{{$p->status}}</td>
                         @if(Auth::user()->email === 'fabriziobilleci7@gmail.com' || $p->status <= 1)
                             <td><a href="{{action('OrderController@edit', $p->id)}}" class="btn-edit">Edit</a></td>

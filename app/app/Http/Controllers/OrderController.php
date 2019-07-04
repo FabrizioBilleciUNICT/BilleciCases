@@ -41,6 +41,7 @@ class OrderController extends Controller
 
         $order->measures = $request->get('measures');
         $order->color = $colorsName[$request->get('color')];
+        $order->price = $request->get('price');
 
         $order->save();
         return redirect('dashboard')->with('success', 'Order has been successfully update');

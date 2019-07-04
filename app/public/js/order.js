@@ -9,6 +9,9 @@ $(document).ready(function () {
     $('#editorder').click(function () {
         submitForm($('#formeditorder'));
     });
+    $('#makeorder').on('keyup change paste', ':input', function () {
+        console.log($('#makeorder').serialize());
+    });
 });
 function submitForm(form) {
     var submitable = true;

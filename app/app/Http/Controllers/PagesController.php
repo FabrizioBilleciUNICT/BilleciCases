@@ -29,6 +29,8 @@ class PagesController extends Controller {
     }
 
     public function preventives() {
+        if(Auth::user() == null) return view('login');
+
         $preventives_ = Order::all();
         if(Auth::user()->email === 'fabriziobilleci7@gmail.com')//superuser
             $preventives = $preventives_;

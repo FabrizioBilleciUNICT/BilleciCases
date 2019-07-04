@@ -4,12 +4,19 @@ $(document).ready(function(){
     addColorOptions();
     startTemplates();
 
-    $('#makeorder').click( function() {
+    let make = $('#makeorder');
+
+    make.click( function() {
         submitForm($('#formorder'));
     });
 
     $('#editorder').click( function() {
         submitForm($('#formeditorder'));
+    });
+
+
+    make.on('keyup change paste', 'input, select, textarea', function(){
+        console.log(make.serialize());
     });
 });
 

@@ -7,6 +7,16 @@
             <div class="card-header">New Order</div>
             <div class="card-body">
                 <form method="post" action="{{url('addorder')}}" id="formorder">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="form-group col-md-4">
+                            <label for="price">Price
+                                <input type="text" class="form-control" name="price" readonly>
+                            </label>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; margin-bottom: -10px; font-weight: 600">Type</p>
                     <table id="table-templates"></table>
 
                     @csrf
@@ -21,7 +31,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <label for="color">Color:</label>
+                            <label for="color">Color</label>
                         </div>
                     </div>
                     <div class="row">
@@ -34,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <label for="handles">Handles:</label>
+                            <label for="handles">Handles</label>
                             <select class="form-control" name="handles">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
