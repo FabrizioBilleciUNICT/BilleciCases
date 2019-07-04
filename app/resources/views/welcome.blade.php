@@ -24,8 +24,8 @@
             <div class="content">
                 <div class="welcome-content">
                     <img src="{{ asset('img/e.png') }}" alt="icon" class="img-logo">
-
-                    <img src="{{ asset('img/allc.png') }}" alt="icon" height="100px">
+                    <br>
+                    <img src="{{ asset('img/allc.png') }}" alt="icon" class="img-bg-logo">
 
                     <p>AAA</p>
 

@@ -19,6 +19,10 @@ html, body {
     outline: none;
 }
 
+button:focus {
+    outline: none;
+}
+
 .full-height {
     height: 100vh;
 }
@@ -52,11 +56,18 @@ a {
     font-weight: 600;
     letter-spacing: .1rem;
     text-decoration: none;
-    text-transform: uppercase;
+    outline: none;
 }
 
 a:hover {
     color: #fff;
+}
+
+.navbar a, .links a {
+    text-transform: uppercase;
+}
+
+.links a:hover {
     background-color: var(--c-primary);
     border-radius: 10px;
 }
@@ -73,7 +84,7 @@ a:hover {
 
 
 .welcome-content{
-    width: 50%;
+    width: 90%;
     height: 100%;
     text-align: center;
     margin: auto;
@@ -97,6 +108,7 @@ a:hover {
 
 .navbar {
     background-color: var(--c-primary);
+    outline: none;
 }
 
 .card {
@@ -139,9 +151,93 @@ a:hover {
     border: 0px;
 }
 
+.btn-standard {
+    background-color: var(--c-primary);
+    color: var(--accent1-c);
+    border-radius: 5px;
+    padding: 7px 14px;
+    border: 0px;
+}
+.btn-standard:hover {
+    background-color: var(--c-dark);
+    color: var(--accent1-c);
+}
 
+.img-bg-logo {
+    width: 100%;
+}
+
+
+.table {
+    margin: auto;
+    width: 80%;
+    font-size: 10px;
+    text-align: center;
+}
+
+.table a {
+    font-size: 10px;
+}
 
 .table tr {
     line-height: 30px;
+}
+
+.table td, .table th {
+    padding: 10px;
+}
+
+
+.card {
+    width: 100%;
+}
+
+.card-body {
+    overflow-x: scroll;
+    padding: 10px;
+}
+
+.nav-back {
+    line-height: 30px;
+    padding: 30px;
+}
+
+
+@media only screen and (min-width: 600px) {}
+
+@media only screen and (min-width: 950px) and (orientation: landscape) {
+    .welcome-content {
+        width: 50%;
+    }
+
+    .img-bg-logo {
+        width: 80%;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    .card-body {
+        overflow-x: unset;
+        padding: 20px;
+    }
+
+    .table {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .table a {
+        font-size: 16px;
+    }
+
+    .table tr {
+        line-height: 30px;
+    }
+
+    .table td, .table th {
+        padding: .75em;
+    }
 }
 

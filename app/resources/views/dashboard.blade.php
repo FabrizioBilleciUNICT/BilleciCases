@@ -12,8 +12,10 @@
                     <th>Model ID</th>
                     <th>Color</th>
                     <th>Measures</th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
+                        <th>Name</th>
+                        <th>Email</th>
+                    @endif
                     <th>Status</th>
                     <th> </th>
                     <th> </th>
@@ -25,8 +27,10 @@
                         <td>{{$p->model_id}}</td>
                         <td>{{$p->color}}</td>
                         <td>{{$p->measures}}</td>
-                        <td>{{$p->name}}</td>
-                        <td>{{$p->email}}</td>
+                        @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
+                            <td>{{$p->name}}</td>
+                            <td>{{$p->email}}</td>
+                        @endif
                         <td>{{$p->status}}</td>
                         @if(Auth::user()->email === 'fabriziobilleci7@gmail.com' || $p->status <= 1)
                             <td><a href="{{action('OrderController@edit', $p->id)}}" class="btn-edit">Edit</a></td>
@@ -44,7 +48,7 @@
             </table>
 
             <br><br>
-            <a href="{{action('PagesController@order')}}" class="btn btn-warning">New Case</a>
+            <button class="btn-standard"><a href="{{action('PagesController@order')}}">New Case</a></button>
         </div>
     </div>
 </div>

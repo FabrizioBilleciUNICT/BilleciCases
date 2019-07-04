@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <p><a href="/dashboard" class="nav-back">&#8617; DASHBOARD</a></p>
         <div class="card">
             <div class="card-header">New Order</div>
             <div class="card-body">
