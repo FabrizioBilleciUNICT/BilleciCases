@@ -9,29 +9,33 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Model ID</th>
-                    <th>Color</th>
-                    <th>Measures</th>
                     @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
                         <th>Name</th>
                         <th>Email</th>
                     @endif
-                    <th>Status</th>
-                    <th> </th>
-                    <th> </th>
+                        <th>Type</th>
+                        <th>Measures</th>
+                        <th>Color</th>
+                        <th>Handles</th>
+                        <th>Shaped</th>
+                        <th>Status</th>
+                        <th> </th>
+                        <th> </th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($preventives as $p)
                     <tr>
-                        <td>{{$p->model_id}}</td>
-                        <td>{{$p->color}}</td>
-                        <td>{{$p->measures}}</td>
                         @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
                             <td>{{$p->name}}</td>
                             <td>{{$p->email}}</td>
                         @endif
-                        <td>{{$p->status}}</td>
+                            <td>{{$p->type}}</td>
+                            <td>{{$p->measures}}</td>
+                            <td>{{$p->color}}</td>
+                            <td>{{$p->handles}}</td>
+                            <td>{{$p->shaped}}</td>
+                            <td class="td-status">{{$p->status}}</td>
                         @if(Auth::user()->email === 'fabriziobilleci7@gmail.com' || $p->status <= 1)
                             <td><a href="{{action('OrderController@edit', $p->id)}}" class="btn-edit">Edit</a></td>
                             <td>
@@ -52,4 +56,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/dashboard.js') }}"></script>
 @endsection

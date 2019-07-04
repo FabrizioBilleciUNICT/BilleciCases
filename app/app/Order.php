@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 /**
- * @property mixed model_id
+ * @property mixed type
  * @property mixed color
  * @property mixed measures
  * @property  mixed name
  * @property  mixed email
  * @property int status
+ * @property mixed shaped
+ * @property mixed handles
  */
-class Preventive extends Eloquent
+class Order extends Eloquent
 {
     protected $connection = 'mongodb';
     protected $collection = 'preventives';
@@ -21,9 +23,11 @@ class Preventive extends Eloquent
     protected $fillable = [
         'email',
         'name',
+        'type',
         'measures',
         'color',
-        'model_id',
+        'shaped',
+        'handles',
         'status'
     ];
 

@@ -6,37 +6,30 @@
         <div class="card">
             <div class="card-header">Edit Order</div>
             <div class="card-body">
-                <form method="post" action="{{action('OrderController@edit', $preventive->id)}}">
+                <form id="formeditorder" method="post" action="{{action('OrderController@edit', $order->id)}}">
                     @csrf
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <label for="Carcompany">Model ID:</label>
-                            <input type="text" class="form-control" name="model_id" value="{{$preventive->model_id}}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="form-group col-md-4">
-                            <label for="Model">Color:</label>
-                            <input type="text" class="form-control" name="color" value="{{$preventive->color}}">
+                            <label for="color">Color:</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
                             <label for="Price">Measures:</label>
-                            <input type="text" class="form-control" name="measures" value="{{$preventive->measures}}">
+                            <input type="text" class="form-control" name="measures" value="{{$order->measures}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="button" id="editorder" class="btn-standard">Update</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/order.js') }}"></script>
 @endsection

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Preventive;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +29,7 @@ class PagesController extends Controller {
     }
 
     public function preventives() {
-        $preventives_ = Preventive::all();
+        $preventives_ = Order::all();
         if(Auth::user()->email === 'fabriziobilleci7@gmail.com')//superuser
             $preventives = $preventives_;
         else
