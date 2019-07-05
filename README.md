@@ -40,4 +40,5 @@ php, composer, npm, mongodb-org
 4. From shell(1)  ```$ mongod --ipv6``` start mongo-service
 5. From shell(2) ```$ php artisan serve``` serve application to localhost:8000
 ### License 
-
+GNU General Public License v3.0
+Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
