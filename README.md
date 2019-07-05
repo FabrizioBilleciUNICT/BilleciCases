@@ -39,3 +39,5 @@ php, composer, npm, mongodb-org
 3. Start Apache Server Service
 4. From shell(1)  ```$ mongod --ipv6``` start mongo-service
 5. From shell(2) ```$ php artisan serve``` serve application to localhost:8000
+### License 
+
