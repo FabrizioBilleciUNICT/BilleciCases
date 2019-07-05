@@ -9,10 +9,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
-                        <th>Name</th>
-                        <th>Email</th>
-                    @endif
                         <th>Type</th>
                         <th>Measures</th>
                         <th>Color</th>
@@ -20,17 +16,16 @@
                         <th>Shaped</th>
                         <th>Price</th>
                         <th>Status</th>
-                        <th> </th>
-                        <th> </th>
+                        <th colspan="2">Actions</th>
+                    @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
+                        <th>Name</th>
+                        <th>Email</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($preventives as $p)
                     <tr>
-                        @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
-                            <td>{{$p->name}}</td>
-                            <td>{{$p->email}}</td>
-                        @endif
                             <td>{{$p->type}}</td>
                             <td>{{$p->measures}}</td>
                             <td>{{$p->color}}</td>
@@ -47,6 +42,10 @@
                                     <button type="submit" class="btn-delete">Delete</button>
                                 </form>
                             </td>
+                        @endif
+                        @if(Auth::user()->email === 'fabriziobilleci7@gmail.com')
+                            <td>{{$p->name}}</td>
+                            <td>{{$p->email}}</td>
                         @endif
                         @endforeach
                     </tr>

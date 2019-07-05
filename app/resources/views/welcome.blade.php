@@ -33,7 +33,7 @@
                     <p>The best flight-cases to protect your equipment.<br>
                         Build your own case and pay on delivery.</p>
 
-                    <a id="btn-start" href="{{ url('/dashboard') }}">Build your Own</a>
+                    <a id="btn-start" href="{{ url('/login') }}">Build your Own</a>
                 </div>
             </div>
 

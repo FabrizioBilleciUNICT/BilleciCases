@@ -17,11 +17,19 @@ $(document).ready(function () {
             $('input[name="price"]').val(calculateNewPrice($('#formorder')));
         });
     var feo = document.querySelector("#formeditorder");
-    if (feo != undefined)
+    if (feo != undefined) {
+        $('select[name="color"]').val(getDefaultColor(order));
         feo.addEventListener('change', function (e) {
             $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
         });
+    }
 });
+function getDefaultColor(order) {
+    for (var i = 0; i < COLORS.length; i++)
+        if (COLORS[i][1] === order.color)
+            return i;
+    return 0;
+}
 function calculateNewPrice(form) {
     var values = {};
     $.each(form.serializeArray(), function (i, field) {

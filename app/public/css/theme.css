@@ -390,11 +390,11 @@ a:hover {
     }
 
     .card {
-        width: 80%;
+        width: 90%;
     }
 
     .card-body {
-        overflow-x: unset;
+        overflow-x: auto;
         padding: 20px;
     }
 

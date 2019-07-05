@@ -1,10 +1,10 @@
 
 
 const COLORS = [
-    [0, "black", "#000000", 0.01],
-    [1, "red", "#ff0000", 0.02],
-    [2, "blue", "#5522ff", 0.03],
-    [3, "yellow", "#eeaa00", 0.02]
+    [0, "Black", "#000000", 0.01],
+    [1, "Red", "#ff0000", 0.02],
+    [2, "Blue", "#5522ff", 0.03],
+    [3, "Yellow", "#eeaa00", 0.02]
 ];
 const PRICE_HANDLE = 30;
 const PRICE_SURFACE = 0.01;

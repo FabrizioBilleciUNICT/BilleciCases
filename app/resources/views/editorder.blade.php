@@ -28,11 +28,11 @@
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
                             <label for="handles">Handles</label>
-                            <select class="form-control" name="handles" value="{{$order->handles}}" disabled>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
+                            <select class="form-control" name="handles" disabled>
+                                <option value="1" @if($order->handles == "1") selected @endif>1</option>
+                                <option value="2" @if($order->handles == "2") selected @endif>2</option>
+                                <option value="3" @if($order->handles == "3") selected @endif>3</option>
+                                <option value="4" @if($order->handles == "4") selected @endif>4</option>
                             </select>
                         </div>
                     </div>
