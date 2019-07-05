@@ -3,16 +3,44 @@
 $(document).ready(function () {
     addColorOptions();
     startTemplates();
+    var formorder = $("#formorder");
+    var formeditorder = $("#formeditorder");
     $('#makeorder').click(function () {
-        submitForm($('#formorder'));
+        submitForm(formorder);
     });
     $('#editorder').click(function () {
-        submitForm($('#formeditorder'));
+        submitForm(formeditorder);
     });
-    $('#makeorder').on('keyup change paste', ':input', function () {
-        console.log($('#makeorder').serialize());
-    });
+    var fo = document.querySelector("#formorder");
+    if (fo != undefined)
+        fo.addEventListener('change', function (e) {
+            $('input[name="price"]').val(calculateNewPrice($('#formorder')));
+        });
+    var feo = document.querySelector("#formeditorder");
+    if (feo != undefined)
+        feo.addEventListener('change', function (e) {
+            $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
+        });
 });
+function calculateNewPrice(form) {
+    var values = {};
+    $.each(form.serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+    var name = "Custom";
+    if (parseInt(values['type']) > -1)
+        name = MODELS[parseInt(values['type'])].name;
+    var f = new FlightCase(name, new Color(COLORS[parseInt(values['color'])]), values['measures'], values['shaped'] === "on", parseInt(values['handles']));
+    return f.getPrice();
+}
+function calculateEditedPrice(order, form) {
+    var values = {};
+    $.each(form.serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+    var f = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), values['measures'], order.shaped === "Yes", order.handles);
+    return f.getPrice();
+}
 function submitForm(form) {
     var submitable = true;
     var values = {};
@@ -25,7 +53,6 @@ function submitForm(form) {
         }
         values[field.name] = field.value;
     });
-    console.log(values);
     if (!submitable)
         alert("Measures must have format: x*y*z");
     else

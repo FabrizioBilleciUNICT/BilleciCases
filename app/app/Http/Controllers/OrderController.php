@@ -20,6 +20,7 @@ class OrderController extends Controller
         $order->color = $colorsName[$request->get('color')];
         $order->shaped = $request->get('shaped')? "Yes":"No";
         $order->handles = $request->get('handles');
+        $order->price = $request->get('price');
         $order->name = Auth::user()->name;
         $order->email = Auth::user()->email;
         $order->status = 0;

@@ -4,26 +4,72 @@ $(document).ready(function(){
     addColorOptions();
     startTemplates();
 
-    let make = $('#makeorder');
+    let formorder = $("#formorder");
+    let formeditorder = $("#formeditorder");
 
-    make.click( function() {
-        submitForm($('#formorder'));
+
+    $('#makeorder').click( function() {
+        submitForm(formorder);
     });
 
     $('#editorder').click( function() {
-        submitForm($('#formeditorder'));
+        submitForm(formeditorder);
     });
 
+    let fo = document.querySelector("#formorder");
+    if(fo!=undefined)
+        fo.addEventListener('change', function(e) {
+            $('input[name="price"]').val(calculateNewPrice($('#formorder')));
+        });
 
-    make.on('keyup change paste', 'input, select, textarea', function(){
-        console.log(make.serialize());
-    });
+    let feo = document.querySelector("#formeditorder");
+    if(feo!=undefined)
+        feo.addEventListener('change', function(e) {
+            $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
+        });
 });
+
+function calculateNewPrice(form): number {
+    let values = {};
+    $.each(form.serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+
+    let name = "Custom";
+    if(parseInt(values['type']) > -1) name = MODELS[parseInt(values['type'])].name;
+
+    let f = new FlightCase(
+        name,
+        new Color(COLORS[parseInt(values['color'])]),
+        values['measures'],
+        values['shaped'] === "on",
+        parseInt(values['handles']));
+
+    return f.getPrice();
+}
+
+function calculateEditedPrice(order, form): number {
+    let values = {};
+    $.each(form.serializeArray(), function(i, field) {
+        values[field.name] = field.value;
+    });
+
+    let f = new FlightCase(
+        order.name,
+        new Color(COLORS[parseInt(values['color'])]),
+        order.measures,
+        order.shaped === "Yes",
+        order.handles);
+
+    return f.getPrice();
+}
+
+
 
 function submitForm(form){
     let submitable = true;
 
-    var values = {};
+    let values = {};
     $.each(form.serializeArray(), function(i, field) {
         if(field.name === "color")
             field.value = COLORS[parseInt(field.value)][1].toString();
@@ -35,8 +81,6 @@ function submitForm(form){
 
         values[field.name] = field.value;
     });
-
-    console.log(values);
 
     if(!submitable) alert("Measures must have format: x*y*z");
     else form.submit();

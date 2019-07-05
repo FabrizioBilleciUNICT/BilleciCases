@@ -6,12 +6,11 @@ const COLORS = [
     [2, "blue", "#5522ff", 0.03],
     [3, "yellow", "#eeaa00", 0.02]
 ];
-
-const MODEL_IDS: number[] = [];
 const PRICE_HANDLE = 30;
 const PRICE_SURFACE = 0.01;
 const PRICE_SHAPED = 60;
 const PRICE_NO_SHAPED = 20;
+
 
 interface IColor {
     id: number;
@@ -36,9 +35,8 @@ class Color implements IColor {
 
 interface IFlightCase {
     name: string;
-    measures: Array<number>;
+    measures: string[];
     color: IColor;
-    model_id: number;
     shaped: boolean;
     handles: number;
     price: number;
@@ -47,17 +45,15 @@ interface IFlightCase {
 class FlightCase implements IFlightCase {
     public name: string;
     public color: IColor;
-    public measures: Array<number>;
-    public model_id: number;
+    public measures: string[];
     public shaped: boolean;
     public handles: number;
     public price: number = 0;
 
-    constructor(name: string, color: IColor, measures: Array<number>, model_id: number, shaped:boolean, handles: number){
+    constructor(name: string, color: IColor, measures: string, shaped:boolean, handles: number){
         this.name = name;
         this.color = color;
-        this.measures = measures;
-        this.model_id = model_id;
+        this.measures = measures.split("*").length == 3? measures.split("*"):['10','10','10'];
         this.shaped = shaped;
         this.handles = handles;
     }
@@ -68,13 +64,13 @@ class FlightCase implements IFlightCase {
     }
 
     getMeasuresSurface(): number {
-        return this.measures[0] * this.measures[1] * this.measures[2];
+        return parseInt(this.measures[0]) * parseInt(this.measures[1]) * parseInt(this.measures[2]);
     }
 }
 
 // TEMPLATES //
-const MODEL1: IFlightCase = new FlightCase("Piano", new Color(COLORS[0]), [50, 100, 30], MODEL_IDS[0],true,2);
-const MODEL2: IFlightCase = new FlightCase("Pizza", new Color(COLORS[1]), [40, 40, 60], MODEL_IDS[1],false,1);
-const MODEL3: IFlightCase = new FlightCase("Telescope", new Color(COLORS[3]), [100, 60, 60], MODEL_IDS[3],true,4);
-const MODEL4: IFlightCase = new FlightCase("Cables", new Color(COLORS[2]), [60, 50, 50], MODEL_IDS[4],false,4);
+const MODEL1: IFlightCase = new FlightCase("Piano", new Color(COLORS[0]), "50*100*30", true,2);
+const MODEL2: IFlightCase = new FlightCase("Pizza", new Color(COLORS[1]), "40*40*60", false,1);
+const MODEL3: IFlightCase = new FlightCase("Telescope", new Color(COLORS[3]), "100*60*60", true,4);
+const MODEL4: IFlightCase = new FlightCase("Cables", new Color(COLORS[2]), "60*50*50", false,4);
 const MODELS: IFlightCase[] = [MODEL1, MODEL2, MODEL3, MODEL4];

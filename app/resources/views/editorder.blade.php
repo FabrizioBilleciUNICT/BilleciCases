@@ -1,3 +1,6 @@
+<script>
+    var order = {!! json_encode($order->toArray(), JSON_HEX_TAG) !!};
+</script>
 @extends('layouts.app')
 
 @section('content')
@@ -18,7 +21,27 @@
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">
                             <label for="Price">Measures</label>
-                            <input type="text" class="form-control" name="measures" value="{{$order->measures}}">
+                            <input type="text" class="form-control" name="measures" value="{{$order->measures}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="form-group col-md-4">
+                            <label for="handles">Handles</label>
+                            <select class="form-control" name="handles" value="{{$order->handles}}" disabled>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="form-group col-md-4">
+                            <label for="price">Price
+                                <input type="text" class="form-control" name="price" value="{{$order->price}}" readonly>
+                            </label>
                         </div>
                     </div>
                     <div class="row">

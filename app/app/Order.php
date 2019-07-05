@@ -14,6 +14,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
  * @property int status
  * @property mixed shaped
  * @property mixed handles
+ * @property mixed price
  */
 class Order extends Eloquent
 {
