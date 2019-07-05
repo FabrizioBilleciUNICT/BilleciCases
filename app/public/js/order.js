@@ -38,7 +38,7 @@ function calculateEditedPrice(order, form) {
     $.each(form.serializeArray(), function (i, field) {
         values[field.name] = field.value;
     });
-    var f = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), values['measures'], order.shaped === "Yes", order.handles);
+    var f = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), order.measures, order.shaped === "Yes", order.handles);
     return f.getPrice();
 }
 function submitForm(form) {
