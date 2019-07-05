@@ -3,6 +3,9 @@
 
     <head>
         <meta charset="utf-8">
+        <meta name="theme-color" content="#113f7c">
+        <meta name="msapplication-navbutton-color" content="#113f7c">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#113f7c">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name', 'Billeci Cases') }}</title>

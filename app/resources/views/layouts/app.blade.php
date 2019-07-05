@@ -2,6 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="theme-color" content="#01579b">
+    <meta name="msapplication-navbutton-color" content="#01579b">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#01579b">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->

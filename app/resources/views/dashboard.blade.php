@@ -53,7 +53,9 @@
             </table>
 
             <br><br>
-            <button class="btn-standard"><a href="{{action('PagesController@order')}}">New Case</a></button>
+            <button class="btn-standard" style="position: sticky; left: 0px;">
+                <a href="{{action('PagesController@order')}}">New Case</a>
+            </button>
         </div>
     </div>
 </div>
