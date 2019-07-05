@@ -11,29 +11,29 @@ If the order has not yet been physically developed, you can change some paramete
 ##### [DELETE AN ORDER]
 If the order has not yet been physically developed, you can delete it for free.
 
-## Features
+### Features
 - Real-Time **price** (re)calculation
 - Create, Read, Update, Delete orders easily
 - **Responsive** WebPages
 - Secure user-space 
 
-## Specs [Client-Side]
+### Specs [Client-Side]
 - HTML5/CSS3
 - Bootstrap
 - Typescript/Javascript
 - jQuery
 
-## Specs [Server-Side]
+### Specs [Server-Side]
 - Laravel MVC
 - PHP
 - MongoDB NoSQL-Database
 
-## Prerequisites
+### Prerequisites
 To run this project you need this packages installed: 
 ```sh
 php, composer, npm, mongodb-org
 ```
-## Installation
+### Installation
 1. Download this repository
 2. Go to 'app' directory with terminal
 3. Start Apache Server Service
