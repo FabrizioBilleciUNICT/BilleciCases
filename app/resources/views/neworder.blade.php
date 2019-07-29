@@ -6,6 +6,9 @@
         <div class="card">
             <div class="card-header">New Order</div>
             <div class="card-body">
+                <div class="stage-container">
+                    <div id="stage"></div>
+                </div>
                 <form method="post" action="{{url('addorder')}}" id="formorder">
                     <p style="text-align: center; margin-bottom: -10px; font-weight: 600">Type</p>
                     <table id="table-templates"></table>
@@ -62,6 +65,8 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/Sprite3D.js') }}"></script>
     <script src="{{ asset('js/order.js') }}"></script>
+    <script>createCase();</script>
 @endsection
 

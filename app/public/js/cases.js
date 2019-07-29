@@ -33,6 +33,9 @@ var FlightCase = /** @class */ (function () {
     FlightCase.prototype.getMeasuresSurface = function () {
         return parseInt(this.measures[0]) * parseInt(this.measures[1]) * parseInt(this.measures[2]);
     };
+    FlightCase.prototype.getColorName = function () {
+        return this.color.name;
+    };
     return FlightCase;
 }());
 // TEMPLATES //

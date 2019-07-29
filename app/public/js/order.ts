@@ -1,5 +1,8 @@
 ///<reference path="cases.ts"/>
 ///<reference path="../../node_modules/@types/jquery/JQueryStatic.d.ts"/>
+
+var flightCase;
+
 $(document).ready(function(){
     addColorOptions();
     startTemplates();
@@ -48,14 +51,15 @@ function calculateNewPrice(form): number {
     let name = "Custom";
     if(parseInt(values['type']) > -1) name = MODELS[parseInt(values['type'])].name;
 
-    let f = new FlightCase(
+    flightCase = new FlightCase(
         name,
         new Color(COLORS[parseInt(values['color'])]),
         values['measures'],
         values['shaped'] === "on",
         parseInt(values['handles']));
+    createCase();
 
-    return f.getPrice();
+    return flightCase.getPrice();
 }
 
 function calculateEditedPrice(order, form): number {
@@ -64,14 +68,15 @@ function calculateEditedPrice(order, form): number {
         values[field.name] = field.value;
     });
 
-    let f = new FlightCase(
+    flightCase = new FlightCase(
         order.name,
         new Color(COLORS[parseInt(values['color'])]),
         order.measures,
         order.shaped === "Yes",
         order.handles);
+    createCase();
 
-    return f.getPrice();
+    return flightCase.getPrice();
 }
 
 
@@ -147,3 +152,31 @@ function startTemplates() {
 }
 
 
+function createCase(){
+    let measures = [10,10,10];
+    if(flightCase != undefined) measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
+
+    let stage = $("#stage"); //Sprite3D.stage();
+    let box = Sprite3D.box(measures[0], measures[1], measures[2], ".box1", flightCase.handles);
+    box.rotate(-45, -45, 0).scale(2).update();
+    stage.html(box);
+    box.addEventListener( "click", onBoxClick, false);
+
+    //change case's color
+    let color = flightCase.getColorName().toLowerCase();
+    $(".box1 > *").css('backgroundImage','url(../img/materials/' + color + '.jpg)');
+
+    //change position
+    box.addClass("box");
+
+
+    function onBoxClick(e){
+        // NOTE :
+        // In this listener function, "this" holds the reference to the box object,
+        // and "e.target" points to the cube's face that was clicked - *cool*
+
+        // let's add some *relative* rotation, and it will result
+        // in a nice animation thanks to the CSS transition defined above
+        //this.rotate( (e.pageY-window.innerHeight*.5), -(e.pageX-window.innerWidth*.5), 0 ).update();
+    }
+}

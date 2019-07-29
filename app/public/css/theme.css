@@ -19,6 +19,32 @@ html, body {
     outline: none;
 }
 
+.box {
+    width: 20%;
+    text-align: center;
+    padding: 100px;
+    padding-top: 140px;
+    margin: auto;
+    position: static !important;
+}
+
+.box1 .front, .box1 .back, .box1 .left, .box1 .right, .box1 .bottom, .box1 .top {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.stage-container {
+    height: 300px;
+    width: 100%;
+    background-color: #1b4b72;
+}
+
+#stage {
+    margin: auto;
+}
+
+
 button:focus {
     outline: none;
 }

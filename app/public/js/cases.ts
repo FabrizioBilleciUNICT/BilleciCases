@@ -66,6 +66,10 @@ class FlightCase implements IFlightCase {
     getMeasuresSurface(): number {
         return parseInt(this.measures[0]) * parseInt(this.measures[1]) * parseInt(this.measures[2]);
     }
+
+    public getColorName() : string {
+        return this.color.name;
+    }
 }
 
 // TEMPLATES //

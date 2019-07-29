@@ -1,5 +1,6 @@
 ///<reference path="cases.ts"/>
 ///<reference path="../../node_modules/@types/jquery/JQueryStatic.d.ts"/>
+var flightCase;
 $(document).ready(function () {
     addColorOptions();
     startTemplates();
@@ -38,16 +39,18 @@ function calculateNewPrice(form) {
     var name = "Custom";
     if (parseInt(values['type']) > -1)
         name = MODELS[parseInt(values['type'])].name;
-    var f = new FlightCase(name, new Color(COLORS[parseInt(values['color'])]), values['measures'], values['shaped'] === "on", parseInt(values['handles']));
-    return f.getPrice();
+    flightCase = new FlightCase(name, new Color(COLORS[parseInt(values['color'])]), values['measures'], values['shaped'] === "on", parseInt(values['handles']));
+    createCase();
+    return flightCase.getPrice();
 }
 function calculateEditedPrice(order, form) {
     var values = {};
     $.each(form.serializeArray(), function (i, field) {
         values[field.name] = field.value;
     });
-    var f = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), order.measures, order.shaped === "Yes", order.handles);
-    return f.getPrice();
+    flightCase = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), order.measures, order.shaped === "Yes", order.handles);
+    createCase();
+    return flightCase.getPrice();
 }
 function submitForm(form) {
     var submitable = true;
@@ -102,4 +105,27 @@ function startTemplates() {
             inHandles.prop('readonly', false);
         }
     });
+}
+function createCase() {
+    var measures = [10, 10, 10];
+    if (flightCase != undefined)
+        measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
+    var stage = $("#stage"); //Sprite3D.stage();
+    var box = Sprite3D.box(measures[0], measures[1], measures[2], ".box1", flightCase.handles);
+    box.rotate(-45, -45, 0).scale(2).update();
+    stage.html(box);
+    box.addEventListener("click", onBoxClick, false);
+    //change case's color
+    var color = flightCase.getColorName().toLowerCase();
+    $(".box1 > *").css('backgroundImage', 'url(../img/materials/' + color + '.jpg)');
+    //change position
+    box.addClass("box");
+    function onBoxClick(e) {
+        // NOTE :
+        // In this listener function, "this" holds the reference to the box object,
+        // and "e.target" points to the cube's face that was clicked - *cool*
+        // let's add some *relative* rotation, and it will result
+        // in a nice animation thanks to the CSS transition defined above
+        //this.rotate( (e.pageY-window.innerHeight*.5), -(e.pageX-window.innerWidth*.5), 0 ).update();
+    }
 }
