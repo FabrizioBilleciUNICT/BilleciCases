@@ -131,9 +131,6 @@ var Sprite3D = Sprite3D || {
 			element.style.margin = "0px";
 			element.style.padding = "0px";
 			element.style.position = "absolute";
-			element.style.borderColor = "#ddd";
-			element.style.borderWidth = "3px";
-			element.style.borderStyle = "solid";
 			element.style.textAlign = "center";
 
 			if(hasHandles) {

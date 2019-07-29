@@ -6,10 +6,16 @@ const COLORS = [
     [2, "Blue", "#5522ff", 0.03],
     [3, "Yellow", "#eeaa00", 0.02]
 ];
-const PRICE_HANDLE = 30;
-const PRICE_SURFACE = 0.01;
-const PRICE_SHAPED = 60;
-const PRICE_NO_SHAPED = 20;
+var PRICE_HANDLE = 30;
+var PRICE_SURFACE = 0.01;
+var PRICE_SHAPED = 60;
+var PRICE_NO_SHAPED = 20;
+
+$(document).ready(function() {
+    console.log(components);
+
+    PRICE_HANDLE = parseFloat(components['handle']);
+});
 
 
 interface IColor {

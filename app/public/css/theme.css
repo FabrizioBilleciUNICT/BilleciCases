@@ -23,7 +23,7 @@ html, body {
     width: 20%;
     text-align: center;
     padding: 100px;
-    padding-top: 140px;
+    padding-top: 150px;
     margin: auto;
     position: static !important;
 }
@@ -32,12 +32,15 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    border-image: url('../img/materials/edge.png') 30 round;
+    border-style: solid;
+    border-width: 5px;
 }
 
 .stage-container {
-    height: 300px;
+    height: 350px;
     width: 100%;
-    background-color: #1b4b72;
+    background-color: #172531;
 }
 
 #stage {

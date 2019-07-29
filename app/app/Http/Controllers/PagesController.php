@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FlightCaseComponent;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,14 @@ class PagesController extends Controller {
     }
 
     public function order() {
-        return view('neworder');
+        $components_ = FlightCaseComponent::all();
+
+        $components = [];
+        foreach ($components_ as $c){
+            $components[$c->name] = $c->price;
+        }
+
+        return view('neworder', compact('components'));
     }
 
     public function preventives() {

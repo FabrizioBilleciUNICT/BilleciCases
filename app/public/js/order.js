@@ -112,7 +112,7 @@ function createCase() {
         measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
     var stage = $("#stage"); //Sprite3D.stage();
     var box = Sprite3D.box(measures[0], measures[1], measures[2], ".box1", flightCase.handles);
-    box.rotate(-45, -45, 0).scale(2).update();
+    box.rotate(-45, -45, 0).scale(2.5).update();
     stage.html(box);
     box.addEventListener("click", onBoxClick, false);
     //change case's color

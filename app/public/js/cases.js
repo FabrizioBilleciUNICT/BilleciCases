@@ -8,6 +8,10 @@ var PRICE_HANDLE = 30;
 var PRICE_SURFACE = 0.01;
 var PRICE_SHAPED = 60;
 var PRICE_NO_SHAPED = 20;
+$(document).ready(function () {
+    console.log(components);
+    PRICE_HANDLE = parseFloat(components['handle']);
+});
 var Color = /** @class */ (function () {
     function Color(arr) {
         this.id = arr[0];

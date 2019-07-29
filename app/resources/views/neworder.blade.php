@@ -1,3 +1,6 @@
+<script>
+    var components = {!! json_encode($components, JSON_HEX_TAG) !!};
+</script>
 @extends('layouts.app')
 
 @section('content')
@@ -65,6 +68,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/cases.js') }}"></script>
     <script src="{{ asset('js/Sprite3D.js') }}"></script>
     <script src="{{ asset('js/order.js') }}"></script>
     <script>createCase();</script>
