@@ -35,3 +35,7 @@ Route::post('/addorder','OrderController@store');
 Route::get('/order/edit/{id}','OrderController@edit');
 Route::post('/order/edit/{id}','OrderController@update');
 Route::delete('/{id}','OrderController@delete');
+
+Route::get('/prices','AdminController@prices');
+Route::get('createComponents', 'AdminController@createComponents');
+Route::post('/updatePrices','AdminController@updatePrices');
