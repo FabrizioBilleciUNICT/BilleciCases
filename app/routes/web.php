@@ -39,3 +39,6 @@ Route::delete('/{id}','OrderController@delete');
 Route::get('/prices','AdminController@prices');
 Route::get('createComponents', 'AdminController@createComponents');
 Route::post('/updatePrices','AdminController@updatePrices');
+
+Route::get('/templates','AdminController@templates');
+Route::get('/createTemplates', 'AdminController@createTemplates');

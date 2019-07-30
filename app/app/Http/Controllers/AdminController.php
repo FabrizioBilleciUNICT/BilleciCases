@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FlightCaseComponent;
+use App\FlightCaseTemplate;
 use App\Order;
 use App\User;
 use Illuminate\Http\Request;
@@ -82,6 +83,65 @@ class AdminController extends Controller
 
         return redirect('prices');
     }
+
+
+
+    public function templates() {
+        if(Auth::user() == null) return view('login');
+
+        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') { //superuser
+            $templates_ = FlightCaseTemplate::all();
+
+            $templates = [];
+            foreach ($templates_ as $c){
+                $templates[$c->name] = [
+                    'name' => $c->name,
+                    'color' => $c->color,
+                    'measures' => $c->measures,
+                    'shaped' => $c->shaped,
+                    'handles' => $c->handles
+                ];
+            }
+
+            return view('templates', compact('templates'));
+        }
+
+        return view('welcome');
+    }
+
+
+
+    protected function createTemplate(string $name, string $color, string $measures, string $shaped, string $handles){
+        $template = new FlightCaseTemplate();
+
+        $template->name = $name;
+        $template->color = $color;
+        $template->measures = $measures;
+        $template->shaped = $shaped;
+        $template->handles = $handles;
+
+        return $template;
+    }
+
+    public function createTemplates(){
+        if(Auth::user() == null) return view('login');
+
+        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {
+            $templates = FlightCaseTemplate::all();
+            if(count($templates) > 0) FlightCaseTemplate::truncate();
+
+            $this->createTemplate('Custom', 'Black', '40*40*40', '0', '1')->save();
+            $this->createTemplate('Piano', 'Black', '50*100*30', '1', '2')->save();
+            $this->createTemplate('Pizza', 'Red', '40*40*60', '0', '1')->save();
+            $this->createTemplate('Telescope', 'Yellow', '100*60*60', '1', '4')->save();
+            $this->createTemplate('Cables', 'Blue', '60*50*50', '0', '4')->save();
+
+            return redirect('templates');
+        }
+
+        return redirect('welcome');
+    }
+
 
 
 
