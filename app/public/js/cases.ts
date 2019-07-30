@@ -1,15 +1,11 @@
 
 
-var COLORS = [
-    [0, "Black", "#000000", 0.01],
-    [1, "Red", "#ff0000", 0.02],
-    [2, "Blue", "#5522ff", 0.03],
-    [3, "Yellow", "#eeaa00", 0.02]
-];
+var PRICE_BLACK, PRICE_BLUE, PRICE_RED, PRICE_YELLOW;
 var PRICE_HANDLE = 0;
 var PRICE_SURFACE = 0.01;
 var PRICE_SHAPED = 60;
 var PRICE_NO_SHAPED = 20;
+var colors = {};
 
 
 
@@ -37,7 +33,7 @@ class Color implements IColor {
 interface IFlightCase {
     name: string;
     measures: string[];
-    color: IColor;
+    color: string;
     shaped: boolean;
     handles: number;
     price: number;
@@ -45,22 +41,22 @@ interface IFlightCase {
 
 class FlightCase implements IFlightCase {
     public name: string;
-    public color: IColor;
+    public color: string;
     public measures: string[];
     public shaped: boolean;
     public handles: number;
     public price: number = 0;
 
-    constructor(name: string, color: IColor, measures: string, shaped:boolean, handles: number){
+    constructor(name: string, color: string, measures: string, shaped:boolean, handles: string){
         this.name = name;
         this.color = color;
         this.measures = measures.split("*").length == 3? measures.split("*"):['10','10','10'];
         this.shaped = shaped;
-        this.handles = handles;
+        this.handles = parseInt(handles);
     }
 
     public getPrice(): number {
-        return this.handles * PRICE_HANDLE + this.getMeasuresSurface() * PRICE_SURFACE * this.color.price +
+        return this.handles * PRICE_HANDLE + this.getMeasuresSurface() * PRICE_SURFACE * colors[this.color] +
             (this.shaped? PRICE_SHAPED:PRICE_NO_SHAPED);
     }
 
@@ -69,11 +65,11 @@ class FlightCase implements IFlightCase {
     }
 
     public getColorName() : string {
-        return this.color.name;
+        return this.color;
     }
 }
 
-var MODELS: IFlightCase[] = [];
+var MODELS = {};
 
 $(document).ready(function() {
     // @ts-ignore
@@ -81,25 +77,59 @@ $(document).ready(function() {
     // @ts-ignore
     PRICE_SURFACE = parseFloat(components['surface']);
     // @ts-ignore
-    COLORS[0][3] = parseFloat(components['surface_black']);
+    PRICE_BLACK = parseFloat(components['surface_black']);
     // @ts-ignore
-    COLORS[1][3] = parseFloat(components['surface_red']);
+    PRICE_RED = parseFloat(components['surface_red']);
     // @ts-ignore
-    COLORS[2][3] = parseFloat(components['surface_blue']);
+    PRICE_BLUE = parseFloat(components['surface_blue']);
     // @ts-ignore
-    COLORS[3][3] = parseFloat(components['surface_yellow']);
+    PRICE_YELLOW = parseFloat(components['surface_yellow']);
     // @ts-ignore
     PRICE_SHAPED = parseFloat(components['shape']);
     // @ts-ignore
     PRICE_NO_SHAPED = parseFloat(components['noShape']);
 
+    colors = {
+        'Black': parseFloat(PRICE_BLACK),
+        'Blue': parseFloat(PRICE_BLUE),
+        'Red': parseFloat(PRICE_RED),
+        'Yellow': parseFloat(PRICE_YELLOW)
+    };
+
     // TEMPLATES //
-    const MODEL0: IFlightCase = new FlightCase("Custom", new Color(COLORS[0]), "40*40*40", false,2);
-    const MODEL1: IFlightCase = new FlightCase("Piano", new Color(COLORS[0]), "50*100*30", true,2);
-    const MODEL2: IFlightCase = new FlightCase("Pizza", new Color(COLORS[1]), "40*40*60", false,1);
-    const MODEL3: IFlightCase = new FlightCase("Telescope", new Color(COLORS[3]), "100*60*60", true,4);
-    const MODEL4: IFlightCase = new FlightCase("Cables", new Color(COLORS[2]), "60*50*50", false,4);
-    MODELS = [MODEL0, MODEL1, MODEL2, MODEL3, MODEL4];
+    // @ts-ignore
+    const custom = templates['Custom'];
+    // @ts-ignore
+    const piano = templates['Piano'];
+    // @ts-ignore
+    const pizza = templates['Pizza'];
+    // @ts-ignore
+    const telescope = templates['Telescope'];
+    // @ts-ignore
+    const cables = templates['Cables'];
+
+    const MODEL0: IFlightCase =
+        new FlightCase(custom['name'], custom['color'], custom['measures'], custom['shaped'] === "1", custom['handles']);
+
+    const MODEL1: IFlightCase =
+        new FlightCase(piano['name'], piano['color'], piano['measures'], piano['shaped'] === "1", piano['handles']);
+
+    const MODEL2: IFlightCase =
+        new FlightCase(pizza['name'], pizza['color'], pizza['measures'], pizza['shaped'] === "1", pizza['handles']);
+
+    const MODEL3: IFlightCase =
+        new FlightCase(telescope['name'], telescope['color'], telescope['measures'], telescope['shaped'] === "1", telescope['handles']);
+
+    const MODEL4: IFlightCase =
+        new FlightCase(cables['name'], cables['color'], cables['measures'], cables['shaped'] === "1", cables['handles']);
+
+    MODELS = {
+        'Custom' : MODEL0,
+        'Piano' : MODEL1,
+        'Pizza' : MODEL2,
+        'Telescope' : MODEL3,
+        'Cables' : MODEL4
+    };
 });
 
 

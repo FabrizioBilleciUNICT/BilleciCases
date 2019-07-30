@@ -1,13 +1,9 @@
-var COLORS = [
-    [0, "Black", "#000000", 0.01],
-    [1, "Red", "#ff0000", 0.02],
-    [2, "Blue", "#5522ff", 0.03],
-    [3, "Yellow", "#eeaa00", 0.02]
-];
+var PRICE_BLACK, PRICE_BLUE, PRICE_RED, PRICE_YELLOW;
 var PRICE_HANDLE = 0;
 var PRICE_SURFACE = 0.01;
 var PRICE_SHAPED = 60;
 var PRICE_NO_SHAPED = 20;
+var colors = {};
 var Color = /** @class */ (function () {
     function Color(arr) {
         this.id = arr[0];
@@ -24,43 +20,65 @@ var FlightCase = /** @class */ (function () {
         this.color = color;
         this.measures = measures.split("*").length == 3 ? measures.split("*") : ['10', '10', '10'];
         this.shaped = shaped;
-        this.handles = handles;
+        this.handles = parseInt(handles);
     }
     FlightCase.prototype.getPrice = function () {
-        return this.handles * PRICE_HANDLE + this.getMeasuresSurface() * PRICE_SURFACE * this.color.price +
+        return this.handles * PRICE_HANDLE + this.getMeasuresSurface() * PRICE_SURFACE * colors[this.color] +
             (this.shaped ? PRICE_SHAPED : PRICE_NO_SHAPED);
     };
     FlightCase.prototype.getMeasuresSurface = function () {
         return parseInt(this.measures[0]) * parseInt(this.measures[1]) * parseInt(this.measures[2]);
     };
     FlightCase.prototype.getColorName = function () {
-        return this.color.name;
+        return this.color;
     };
     return FlightCase;
 }());
-var MODELS = [];
+var MODELS = {};
 $(document).ready(function () {
     // @ts-ignore
     PRICE_HANDLE = parseFloat(components['handle']);
     // @ts-ignore
     PRICE_SURFACE = parseFloat(components['surface']);
     // @ts-ignore
-    COLORS[0][3] = parseFloat(components['surface_black']);
+    PRICE_BLACK = parseFloat(components['surface_black']);
     // @ts-ignore
-    COLORS[1][3] = parseFloat(components['surface_red']);
+    PRICE_RED = parseFloat(components['surface_red']);
     // @ts-ignore
-    COLORS[2][3] = parseFloat(components['surface_blue']);
+    PRICE_BLUE = parseFloat(components['surface_blue']);
     // @ts-ignore
-    COLORS[3][3] = parseFloat(components['surface_yellow']);
+    PRICE_YELLOW = parseFloat(components['surface_yellow']);
     // @ts-ignore
     PRICE_SHAPED = parseFloat(components['shape']);
     // @ts-ignore
     PRICE_NO_SHAPED = parseFloat(components['noShape']);
+    colors = {
+        'Black': parseFloat(PRICE_BLACK),
+        'Blue': parseFloat(PRICE_BLUE),
+        'Red': parseFloat(PRICE_RED),
+        'Yellow': parseFloat(PRICE_YELLOW)
+    };
     // TEMPLATES //
-    var MODEL0 = new FlightCase("Custom", new Color(COLORS[0]), "40*40*40", false, 2);
-    var MODEL1 = new FlightCase("Piano", new Color(COLORS[0]), "50*100*30", true, 2);
-    var MODEL2 = new FlightCase("Pizza", new Color(COLORS[1]), "40*40*60", false, 1);
-    var MODEL3 = new FlightCase("Telescope", new Color(COLORS[3]), "100*60*60", true, 4);
-    var MODEL4 = new FlightCase("Cables", new Color(COLORS[2]), "60*50*50", false, 4);
-    MODELS = [MODEL0, MODEL1, MODEL2, MODEL3, MODEL4];
+    // @ts-ignore
+    var custom = templates['Custom'];
+    // @ts-ignore
+    var piano = templates['Piano'];
+    // @ts-ignore
+    var pizza = templates['Pizza'];
+    // @ts-ignore
+    var telescope = templates['Telescope'];
+    // @ts-ignore
+    var cables = templates['Cables'];
+    var MODEL0 = new FlightCase(custom['name'], custom['color'], custom['measures'], custom['shaped'] === "1", custom['handles']);
+    var MODEL1 = new FlightCase(piano['name'], piano['color'], piano['measures'], piano['shaped'] === "1", piano['handles']);
+    var MODEL2 = new FlightCase(pizza['name'], pizza['color'], pizza['measures'], pizza['shaped'] === "1", pizza['handles']);
+    var MODEL3 = new FlightCase(telescope['name'], telescope['color'], telescope['measures'], telescope['shaped'] === "1", telescope['handles']);
+    var MODEL4 = new FlightCase(cables['name'], cables['color'], cables['measures'], cables['shaped'] === "1", cables['handles']);
+    MODELS = {
+        'Custom': MODEL0,
+        'Piano': MODEL1,
+        'Pizza': MODEL2,
+        'Telescope': MODEL3,
+        'Cables': MODEL4
+    };
 });

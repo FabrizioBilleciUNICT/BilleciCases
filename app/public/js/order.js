@@ -18,7 +18,7 @@ $(document).ready(function () {
     }
     if (feo != undefined) {
         // @ts-ignore
-        $('select[name="color"]').val(getDefaultColor(order));
+        $('select[name="color"]').val(order['color']);
         feo.addEventListener('change', function (e) {
             // @ts-ignore
             $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
@@ -27,12 +27,6 @@ $(document).ready(function () {
         calculateEditedPrice(order, $('#formeditorder'));
     }
 });
-function getDefaultColor(order) {
-    for (var i = 0; i < COLORS.length; i++)
-        if (COLORS[i][1] === order.color)
-            return i;
-    return 0;
-}
 function calculateNewPrice(form) {
     var values = {};
     $.each(form.serializeArray(), function (i, field) {
@@ -41,7 +35,7 @@ function calculateNewPrice(form) {
     var name = "Custom";
     if (parseInt(values['type']) > -1)
         name = MODELS[parseInt(values['type'])].name;
-    flightCase = new FlightCase(name, new Color(COLORS[parseInt(values['color'])]), values['measures'], values['shaped'] === "on", parseInt(values['handles']));
+    flightCase = new FlightCase(name, values['color'], values['measures'], values['shaped'] === "on", values['handles']);
     createCase();
     return flightCase.getPrice();
 }
@@ -50,7 +44,7 @@ function calculateEditedPrice(order, form) {
     $.each(form.serializeArray(), function (i, field) {
         values[field.name] = field.value;
     });
-    flightCase = new FlightCase(order.name, new Color(COLORS[parseInt(values['color'])]), order.measures, order.shaped === "Yes", order.handles);
+    flightCase = new FlightCase(order.name, values['color'], order.measures, order.shaped === "Yes", order.handles);
     createCase();
     return flightCase.getPrice();
 }
@@ -58,8 +52,7 @@ function submitForm(form) {
     var submitable = true;
     var values = {};
     $.each(form.serializeArray(), function (i, field) {
-        if (field.name === "color")
-            field.value = COLORS[parseInt(field.value)][1].toString();
+        //if(field.name === "color")field.value = COLORS[parseInt(field.value)][1].toString();
         if (field.name === "measures") {
             if (field.value.split("*").length != 3)
                 submitable = false;
@@ -73,16 +66,18 @@ function submitForm(form) {
 }
 function addColorOptions() {
     var options = "";
-    COLORS.forEach(function (value, index, array) {
-        options += "<option value=" + COLORS[index][0] + ">" + COLORS[index][1] + "</option>";
-    });
+    for (var color in colors) {
+        options += "<option value=" + color + ">" + color + "</option>";
+    }
     $('label[for="color"]').after("<select class=\"form-control\" name=\"color\">" + options + "</select>");
 }
 function startTemplates() {
-    var htmlString = ""; //"<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
+    var htmlString = "";
     var table = $("#table-templates");
-    MODELS.forEach(function (element, index, array) {
-        htmlString += "<td><label class='radio'><input type=\"radio\" name=\"type\" value=" + index.toString() + "><span>" + element.name + "</span></label></td>";
+    Object.keys(MODELS).forEach(function (key) {
+        htmlString +=
+            "<td><label class='radio'><input type=\"radio\" name=\"type\" value="
+                + MODELS[key]['name'] + "><span>" + MODELS[key]['name'] + "</span></label></td>";
     });
     table.html("<tr><form id='templatesradio'>" + htmlString + "</form></tr>");
     var inMeasures = $('input[name="measures"]');
@@ -91,14 +86,12 @@ function startTemplates() {
     var inHandles = $('select[name="handles"]');
     $("input[type=radio]").click(function () {
         // @ts-ignore
-        var index = parseInt(this.value);
-        if (index < 0 || index > MODELS.length)
-            return;
-        inMeasures.val(MODELS[index].measures.toString().replace(/,/g, "*"));
-        inColor.val(MODELS[index].color.id);
-        inShaped.prop('checked', MODELS[index].shaped);
-        inHandles.val(MODELS[index].handles);
-        var isCustom = index === 0;
+        var key = this.value;
+        inMeasures.val(MODELS[key].measures.toString().replace(/,/g, "*"));
+        inColor.val(MODELS[key].color);
+        inShaped.prop('checked', MODELS[key].shaped);
+        inHandles.val(MODELS[key].handles);
+        var isCustom = key === 'Custom';
         inMeasures.prop('readonly', !isCustom);
         inShaped.prop('readonly', !isCustom);
         inHandles.prop('readonly', !isCustom);

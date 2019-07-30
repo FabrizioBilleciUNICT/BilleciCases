@@ -1,6 +1,7 @@
 <script>
     var components = {!! json_encode($components, JSON_HEX_TAG) !!};
-    var order = {!! json_encode($order => toArray(), JSON_HEX_TAG) !!};
+    var templates = {!! json_encode($templates, JSON_HEX_TAG) !!};
+    var order = {!! json_encode($order, JSON_HEX_TAG) !!};
 </script>
 @extends('layouts.app')
 

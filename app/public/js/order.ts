@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     if(feo!=undefined) {
         // @ts-ignore
-        $('select[name="color"]').val(getDefaultColor(order));
+        $('select[name="color"]').val(order['color']);
         feo.addEventListener('change', function (e) {
             // @ts-ignore
             $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
@@ -34,12 +34,6 @@ $(document).ready(function(){
     }
 });
 
-function getDefaultColor(order): number {
-    for(let i=0; i<COLORS.length; i++)
-        if(COLORS[i][1] === order.color)
-            return i;
-    return 0;
-}
 
 function calculateNewPrice(form): number {
     let values = {};
@@ -52,10 +46,10 @@ function calculateNewPrice(form): number {
 
     flightCase = new FlightCase(
         name,
-        new Color(COLORS[parseInt(values['color'])]),
+        values['color'],
         values['measures'],
         values['shaped'] === "on",
-        parseInt(values['handles']));
+        values['handles']);
     createCase();
 
     return flightCase.getPrice();
@@ -69,7 +63,7 @@ function calculateEditedPrice(order, form): number {
 
     flightCase = new FlightCase(
         order.name,
-        new Color(COLORS[parseInt(values['color'])]),
+        values['color'],
         order.measures,
         order.shaped === "Yes",
         order.handles);
@@ -85,8 +79,7 @@ function submitForm(form){
 
     let values = {};
     $.each(form.serializeArray(), function(i, field) {
-        if(field.name === "color")
-            field.value = COLORS[parseInt(field.value)][1].toString();
+        //if(field.name === "color")field.value = COLORS[parseInt(field.value)][1].toString();
 
         if(field.name === "measures") {
             if(field.value.split("*").length != 3)
@@ -103,19 +96,21 @@ function submitForm(form){
 function addColorOptions() {
     let options = "";
 
-    COLORS.forEach(function (value, index, array) {
-        options +=  "<option value="+ COLORS[index][0] +">" + COLORS[index][1]  + "</option>";
-    });
+    for(let color in colors){
+        options +=  "<option value="+ color +">" + color  + "</option>";
+    }
 
     $('label[for="color"]').after("<select class=\"form-control\" name=\"color\">" + options + "</select>");
 }
 
 function startTemplates() {
-    let htmlString = "";//"<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
+    let htmlString = "";
     let table = $("#table-templates");
 
-    MODELS.forEach(function (element, index, array) {
-        htmlString += "<td><label class='radio'><input type=\"radio\" name=\"type\" value=" + index.toString() + "><span>" + element.name + "</span></label></td>";
+    Object.keys(MODELS).forEach(function(key) {
+        htmlString +=
+            "<td><label class='radio'><input type=\"radio\" name=\"type\" value="
+            + MODELS[key]['name'] + "><span>" + MODELS[key]['name'] + "</span></label></td>";
     });
 
     table.html("<tr><form id='templatesradio'>" + htmlString + "</form></tr>");
@@ -128,15 +123,14 @@ function startTemplates() {
 
     $("input[type=radio]").click(function(){
         // @ts-ignore
-        let index = parseInt(this.value);
-        if(index < 0 || index > MODELS.length) return;
+        let key = this.value;
 
-        inMeasures.val(MODELS[index].measures.toString().replace(/,/g,"*"));
-        inColor.val(MODELS[index].color.id);
-        inShaped.prop('checked', MODELS[index].shaped);
-        inHandles.val(MODELS[index].handles);
+        inMeasures.val(MODELS[key].measures.toString().replace(/,/g,"*"));
+        inColor.val(MODELS[key].color);
+        inShaped.prop('checked', MODELS[key].shaped);
+        inHandles.val(MODELS[key].handles);
 
-        let isCustom = index === 0;
+        let isCustom = key === 'Custom';
         inMeasures.prop('readonly', !isCustom);
         inShaped.prop('readonly', !isCustom);
         inHandles.prop('readonly', !isCustom);
