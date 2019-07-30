@@ -1,34 +1,7 @@
-
-
-var PRICE_BLACK, PRICE_BLUE, PRICE_RED, PRICE_YELLOW;
-var PRICE_HANDLE = 0;
-var PRICE_SURFACE = 0.01;
-var PRICE_SHAPED = 60;
-var PRICE_NO_SHAPED = 20;
+var PRICE_BLACK : number, PRICE_BLUE : number, PRICE_RED : number, PRICE_YELLOW : number;
+var PRICE_HANDLE : number, PRICE_SURFACE : number, PRICE_SHAPED : number, PRICE_NO_SHAPED : number;
 var colors = {};
-
-
-
-interface IColor {
-    id: number;
-    name: string;
-    value: string;
-    price: number;
-}
-
-class Color implements IColor {
-    public id: number;
-    public name: string;
-    public value: string;
-    public price: number;
-
-    constructor(arr){
-        this.id = arr[0];
-        this.name = arr[1];
-        this.value = arr[2];
-        this.price = arr[3];
-    }
-}
+var MODELS = {};
 
 interface IFlightCase {
     name: string;
@@ -69,8 +42,6 @@ class FlightCase implements IFlightCase {
     }
 }
 
-var MODELS = {};
-
 $(document).ready(function() {
     // @ts-ignore
     PRICE_HANDLE = parseFloat(components['handle']);
@@ -90,10 +61,10 @@ $(document).ready(function() {
     PRICE_NO_SHAPED = parseFloat(components['noShape']);
 
     colors = {
-        'Black': parseFloat(PRICE_BLACK),
-        'Blue': parseFloat(PRICE_BLUE),
-        'Red': parseFloat(PRICE_RED),
-        'Yellow': parseFloat(PRICE_YELLOW)
+        'Black': PRICE_BLACK,
+        'Blue': PRICE_BLUE,
+        'Red': PRICE_RED,
+        'Yellow': PRICE_YELLOW
     };
 
     // TEMPLATES //

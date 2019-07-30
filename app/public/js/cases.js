@@ -1,18 +1,7 @@
 var PRICE_BLACK, PRICE_BLUE, PRICE_RED, PRICE_YELLOW;
-var PRICE_HANDLE = 0;
-var PRICE_SURFACE = 0.01;
-var PRICE_SHAPED = 60;
-var PRICE_NO_SHAPED = 20;
+var PRICE_HANDLE, PRICE_SURFACE, PRICE_SHAPED, PRICE_NO_SHAPED;
 var colors = {};
-var Color = /** @class */ (function () {
-    function Color(arr) {
-        this.id = arr[0];
-        this.name = arr[1];
-        this.value = arr[2];
-        this.price = arr[3];
-    }
-    return Color;
-}());
+var MODELS = {};
 var FlightCase = /** @class */ (function () {
     function FlightCase(name, color, measures, shaped, handles) {
         this.price = 0;
@@ -34,7 +23,6 @@ var FlightCase = /** @class */ (function () {
     };
     return FlightCase;
 }());
-var MODELS = {};
 $(document).ready(function () {
     // @ts-ignore
     PRICE_HANDLE = parseFloat(components['handle']);
@@ -53,10 +41,10 @@ $(document).ready(function () {
     // @ts-ignore
     PRICE_NO_SHAPED = parseFloat(components['noShape']);
     colors = {
-        'Black': parseFloat(PRICE_BLACK),
-        'Blue': parseFloat(PRICE_BLUE),
-        'Red': parseFloat(PRICE_RED),
-        'Yellow': parseFloat(PRICE_YELLOW)
+        'Black': PRICE_BLACK,
+        'Blue': PRICE_BLUE,
+        'Red': PRICE_RED,
+        'Yellow': PRICE_YELLOW
     };
     // TEMPLATES //
     // @ts-ignore

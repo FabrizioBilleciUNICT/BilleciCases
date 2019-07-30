@@ -18,7 +18,7 @@
 
 Route::get('/','PagesController@welcome');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-Route::get('/dashboard','PagesController@preventives');
+Route::get('/dashboard','PagesController@dashboard');
 
 Route::get('/contact','PagesController@contact');
 Route::get('/about','PagesController@about');
@@ -36,9 +36,15 @@ Route::get('/order/edit/{id}','OrderController@edit');
 Route::post('/order/edit/{id}','OrderController@update');
 Route::delete('/{id}','OrderController@delete');
 
-Route::get('/prices','AdminController@prices');
+//*** ADMIN ***//
+Route::get('/components','AdminController@components');
 Route::get('createComponents', 'AdminController@createComponents');
-Route::post('/updatePrices','AdminController@updatePrices');
+Route::post('/updateComponents','AdminController@updateComponents');
+
+Route::get('/orders','AdminController@orders');
 
 Route::get('/templates','AdminController@templates');
 Route::get('/createTemplates', 'AdminController@createTemplates');
+//*** ADMIN ***//
+
+

@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\FlightCaseComponent;
 use App\FlightCaseTemplate;
 use App\Order;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use function MongoDB\BSON\toJSON;
 
 class AdminController extends Controller
 {
 
-    public function prices() {
+    public function components() {
         if(Auth::user() == null) return view('login');
 
         if(Auth::user()->email === 'fabriziobilleci7@gmail.com') { //superuser
@@ -24,7 +22,7 @@ class AdminController extends Controller
                 $components[$c->name] = $c->price;
             }
 
-            return view('prices', compact('components'));
+            return view('admin_components', compact('components'));
         }
 
         return view('welcome');
@@ -56,7 +54,7 @@ class AdminController extends Controller
             $this->createComponent('shape', '60')->save();
             $this->createComponent('noShape', '20')->save();
 
-            return redirect('prices');
+            return $this->components();
         }
 
         return redirect('welcome');
@@ -71,7 +69,7 @@ class AdminController extends Controller
         return $component;
     }
 
-    public function updatePrices(Request $request) {
+    public function updateComponents(Request $request) {
         $this->updateComponent('surface', $request)->save();
         $this->updateComponent('surface_black', $request)->save();
         $this->updateComponent('surface_blue', $request)->save();
@@ -81,7 +79,7 @@ class AdminController extends Controller
         $this->updateComponent('shape', $request)->save();
         $this->updateComponent('noShape', $request)->save();
 
-        return redirect('prices');
+        return $this->components();
     }
 
 
@@ -103,7 +101,7 @@ class AdminController extends Controller
                 ];
             }
 
-            return view('templates', compact('templates'));
+            return view('admin_templates', compact('templates'));
         }
 
         return view('welcome');
@@ -136,10 +134,22 @@ class AdminController extends Controller
             $this->createTemplate('Telescope', 'Yellow', '100*60*60', '1', '4')->save();
             $this->createTemplate('Cables', 'Blue', '60*50*50', '0', '4')->save();
 
-            return redirect('templates');
+            return redirect('admin_templates');
         }
 
         return redirect('welcome');
+    }
+
+    public function orders() {
+        if(Auth::user() == null) return view('login');
+
+        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {//superuser
+            $preventives = Order::all();
+            return view('admin_orders', compact('preventives'));
+        }
+
+        return view('welcome');
+
     }
 
 

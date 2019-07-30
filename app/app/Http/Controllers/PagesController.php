@@ -25,15 +25,25 @@ class PagesController extends Controller {
         return view('login');
     }
 
-
-    public function preventives() {
+    public function admin() {
         if(Auth::user() == null) return view('login');
 
-        $preventives_ = Order::all();
         if(Auth::user()->email === 'fabriziobilleci7@gmail.com')//superuser
-            $preventives = $preventives_;
-        else
+            return view ('admin_dashboard');
+
+        return view('welcome');
+    }
+
+
+    public function dashboard() {
+        if(Auth::user() == null) return view('login');
+
+        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {//superuser
+            return view('admin_dashboard');
+        } else {
+            $preventives_ = Order::all();
             $preventives = $preventives_->where('name', $preventives_->get('name'), Auth::user()->name);
-        return view('dashboard', compact('preventives'));
+            return view('dashboard', compact('preventives'));
+        }
     }
 }

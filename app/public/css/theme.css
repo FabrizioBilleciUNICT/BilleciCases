@@ -7,6 +7,9 @@
     --accent2-hover-c: #FAB00C;
     --accent3-c: #EE310D;
     --accent3-hover-c: #E0300C;
+
+    --c-td: #373f46;
+    --c-td-dark: #30373e;
 }
 
 
@@ -18,6 +21,7 @@ html, body {
     transition: all 0.3s ease-in-out;
     outline: none;
 }
+
 
 .box {
     width: 20%;
@@ -408,7 +412,88 @@ a:hover {
 }
 
 
+/** NAVIGATION **/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 160px;
+}
 
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#app, #navbar {
+    margin-left: 0;
+    transition: margin-left .5s;
+}
+
+#nav-account {
+    float: right;
+    display: none;
+}
+
+#open-nav {
+    cursor:pointer;
+    float: left;
+    height: 66px;
+}
+/** NAVIGATION **/
+
+#navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.main-content {
+    margin-top: 150px;
+}
+
+.container-admin {
+    background: var(--c-td-dark);
+    padding: 30px;
+}
+
+.card-dark-top {
+    background: var(--c-td);
+    width: 90%;
+    color: var(--accent1-c);
+    border-radius: 5px;
+    margin: auto;
+    margin-top: -75px;
+}
+
+
+.color-accent {
+    color: var(--primary) !important;
+}
 
 
 @media only screen and (min-width: 600px) {}
@@ -473,5 +558,29 @@ a:hover {
         width: 50%;
         margin: auto;
     }
+
+    /** NAVIGATION **/
+    .sidenav {
+        height: 100%;
+        width: 250px;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        font-size: 25px;
+        color: #818181;
+    }
+
+    .sidenav .closebtn, #open-nav {
+        display: none;
+    }
+
+    #app, #navbar {
+        margin-left: 250px;
+    }
+
+    /** NAVIGATION **/
+
 }
 

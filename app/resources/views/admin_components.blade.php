@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 
 @section('content')
     <div class="container">
         <p><a href="/dashboard" class="nav-back">&#8617; DASHBOARD</a></p>
         <div class="card">
-            <div class="card-header" style="overflow: hidden">Prices</div>
+            <div class="card-header" style="overflow: hidden">Components</div>
             <div class="card-body">
                 <div style="overflow:hidden;">
                     <a href="/createComponents" style="color: black; float:right; font-size: 10px">&#8617; RESTORE DEFAULT PRICES</a>
                 </div>
 
-                <form method="post" action="{{url('updatePrices')}}" style="font-size: 14px">
+                <form method="post" action="{{url('updateComponents')}}" style="font-size: 14px">
                     @csrf
                     <div class="row">
                         <div class="col-md-4"></div>
@@ -87,5 +87,10 @@
             </div>
         </div>
     </div>
+<script>
+    $(document).ready(function() {
+        $($('#mySidenav a')[4]).addClass('color-accent');
+    });
+</script>
 @endsection
 

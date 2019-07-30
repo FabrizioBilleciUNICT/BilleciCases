@@ -1,7 +1,6 @@
 ///<reference path="cases.ts"/>
 ///<reference path="../../node_modules/@types/jquery/JQueryStatic.d.ts"/>
-
-var flightCase;
+var flightCase : FlightCase;
 
 $(document).ready(function(){
     addColorOptions();
@@ -71,8 +70,6 @@ function calculateEditedPrice(order, form): number {
 
     return flightCase.getPrice();
 }
-
-
 
 function submitForm(form){
     let submitable = true;
