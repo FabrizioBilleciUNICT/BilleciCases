@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FlightCaseComponent;
 use App\Order;
 use App\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+
+    protected function getAllComponents(){
+        $components_ = FlightCaseComponent::all();
+        $components = [];
+        foreach ($components_ as $c) $components[$c->name] = $c->price;
+
+        return $components;
+    }
+
+    public function newOrder() {
+        $components = $this->getAllComponents();
+        return view('neworder', compact('components'));
+    }
 
     public function store(Request $request) {
         $colorsName = ["Black","Red", "Blue", "Yellow"];
@@ -30,9 +44,10 @@ class OrderController extends Controller
     }
 
     public function edit($id) {
+        $components = $this->getAllComponents();
         $order = Order::find($id);
 
-        return view('editorder',compact('order','id'));
+        return view('editorder',compact('order','id'), compact('components'));
     }
 
     public function update(Request $request, $id) {
@@ -54,7 +69,5 @@ class OrderController extends Controller
         $order->delete();
         return redirect('dashboard')->with('success','Order has been deleted');
     }
-
-
 
 }

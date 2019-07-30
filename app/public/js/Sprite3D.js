@@ -135,7 +135,7 @@ var Sprite3D = Sprite3D || {
 
 			if(hasHandles) {
                 element.innerHTML =
-                    "<img style='height='10px' width='10px'  src='../img/materials/handle.png'>";
+                    "<img style='height='10px' width='10px'  src='/img/materials/handle.png'>";
             }
 
 			this._handleStringArgument(element,str);

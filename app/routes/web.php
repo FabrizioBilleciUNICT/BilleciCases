@@ -29,7 +29,7 @@ Route::get('/preventives','PagesController@preventives');
 Auth::routes();
 
 
-Route::get('/neworder','PagesController@order');
+Route::get('/neworder','OrderController@newOrder');
 Route::get('/addorder','OrderController@create');
 Route::post('/addorder','OrderController@store');
 Route::get('/order/edit/{id}','OrderController@edit');

@@ -1,5 +1,6 @@
 <script>
-    var order = {!! json_encode($order->toArray(), JSON_HEX_TAG) !!};
+    var components = {!! json_encode($components, JSON_HEX_TAG) !!};
+    var order = {!! json_encode($order => toArray(), JSON_HEX_TAG) !!};
 </script>
 @extends('layouts.app')
 
@@ -9,6 +10,9 @@
         <div class="card">
             <div class="card-header">Edit Order</div>
             <div class="card-body">
+                <div class="stage-container">
+                    <div id="stage"></div>
+                </div>
                 <form id="formeditorder" method="post" action="{{action('OrderController@edit', $order->id)}}">
                     @csrf
                     <div class="row">
@@ -54,5 +58,8 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/cases.js') }}"></script>
+    <script src="{{ asset('js/Sprite3D.js') }}"></script>
     <script src="{{ asset('js/order.js') }}"></script>
+    <script>//createCase();</script>
 @endsection

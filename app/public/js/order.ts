@@ -9,29 +9,28 @@ $(document).ready(function(){
 
     let formorder = $("#formorder");
     let formeditorder = $("#formeditorder");
-
-
-    $('#makeorder').click( function() {
-        submitForm(formorder);
-    });
-
-    $('#editorder').click( function() {
-        submitForm(formeditorder);
-    });
-
     let fo = document.querySelector("#formorder");
-    if(fo!=undefined)
-        fo.addEventListener('change', function(e) {
+    let feo = document.querySelector("#formeditorder");
+
+    $('#makeorder').click( function() { submitForm(formorder); });
+    $('#editorder').click( function() { submitForm(formeditorder); });
+
+    if(fo!=undefined) {
+        fo.addEventListener('change', function (e) {
             $('input[name="price"]').val(calculateNewPrice($('#formorder')));
         });
+        calculateNewPrice($('#formorder'));
+    }
 
-    let feo = document.querySelector("#formeditorder");
     if(feo!=undefined) {
+        // @ts-ignore
         $('select[name="color"]').val(getDefaultColor(order));
-
         feo.addEventListener('change', function (e) {
+            // @ts-ignore
             $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
         });
+        // @ts-ignore
+        calculateEditedPrice(order, $('#formeditorder'));
     }
 });
 
@@ -112,7 +111,7 @@ function addColorOptions() {
 }
 
 function startTemplates() {
-    let htmlString = "<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
+    let htmlString = "";//"<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
     let table = $("#table-templates");
 
     MODELS.forEach(function (element, index, array) {
@@ -128,35 +127,28 @@ function startTemplates() {
 
 
     $("input[type=radio]").click(function(){
+        // @ts-ignore
         let index = parseInt(this.value);
+        if(index < 0 || index > MODELS.length) return;
 
-        if(index >= 0 && index < MODELS.length) {
-            inMeasures.val(MODELS[index].measures.toString().replace(/,/g,"*"));
-            inMeasures.prop('readonly', true);
+        inMeasures.val(MODELS[index].measures.toString().replace(/,/g,"*"));
+        inColor.val(MODELS[index].color.id);
+        inShaped.prop('checked', MODELS[index].shaped);
+        inHandles.val(MODELS[index].handles);
 
-            inColor.val(MODELS[index].color.id);
-
-            inShaped.prop('checked', MODELS[index].shaped);
-            inShaped.prop('readonly', true);
-
-            inHandles.val(MODELS[index].handles);
-            inHandles.prop('readonly', true);
-        }
-        else {
-            inMeasures.val("");
-            inMeasures.prop('readonly', false);
-            inShaped.prop('readonly', false);
-            inHandles.prop('readonly', false);
-        }
+        let isCustom = index === 0;
+        inMeasures.prop('readonly', !isCustom);
+        inShaped.prop('readonly', !isCustom);
+        inHandles.prop('readonly', !isCustom);
     });
 }
 
 
 function createCase(){
-    let measures = [10,10,10];
-    if(flightCase != undefined) measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
+    let measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
 
-    let stage = $("#stage"); //Sprite3D.stage();
+    let stage = $("#stage");
+    // @ts-ignore
     let box = Sprite3D.box(measures[0], measures[1], measures[2], ".box1", flightCase.handles);
     box.rotate(-45, -45, 0).scale(2.5).update();
     stage.html(box);
@@ -164,7 +156,7 @@ function createCase(){
 
     //change case's color
     let color = flightCase.getColorName().toLowerCase();
-    $(".box1 > *").css('backgroundImage','url(../img/materials/' + color + '.jpg)');
+    $(".box1 > *").css('backgroundImage','url(/img/materials/' + color + '.jpg)');
 
     //change position
     box.addClass("box");

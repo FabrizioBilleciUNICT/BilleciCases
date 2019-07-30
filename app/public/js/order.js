@@ -6,23 +6,25 @@ $(document).ready(function () {
     startTemplates();
     var formorder = $("#formorder");
     var formeditorder = $("#formeditorder");
-    $('#makeorder').click(function () {
-        submitForm(formorder);
-    });
-    $('#editorder').click(function () {
-        submitForm(formeditorder);
-    });
     var fo = document.querySelector("#formorder");
-    if (fo != undefined)
+    var feo = document.querySelector("#formeditorder");
+    $('#makeorder').click(function () { submitForm(formorder); });
+    $('#editorder').click(function () { submitForm(formeditorder); });
+    if (fo != undefined) {
         fo.addEventListener('change', function (e) {
             $('input[name="price"]').val(calculateNewPrice($('#formorder')));
         });
-    var feo = document.querySelector("#formeditorder");
+        calculateNewPrice($('#formorder'));
+    }
     if (feo != undefined) {
+        // @ts-ignore
         $('select[name="color"]').val(getDefaultColor(order));
         feo.addEventListener('change', function (e) {
+            // @ts-ignore
             $('input[name="price"]').val(calculateEditedPrice(order, $('#formeditorder')));
         });
+        // @ts-ignore
+        calculateEditedPrice(order, $('#formeditorder'));
     }
 });
 function getDefaultColor(order) {
@@ -77,7 +79,7 @@ function addColorOptions() {
     $('label[for="color"]').after("<select class=\"form-control\" name=\"color\">" + options + "</select>");
 }
 function startTemplates() {
-    var htmlString = "<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
+    var htmlString = ""; //"<td><label class='radio'><input type=\"radio\" name=\"type\" value=\"-1\" checked><span>Custom</span></label></td>";
     var table = $("#table-templates");
     MODELS.forEach(function (element, index, array) {
         htmlString += "<td><label class='radio'><input type=\"radio\" name=\"type\" value=" + index.toString() + "><span>" + element.name + "</span></label></td>";
@@ -88,36 +90,31 @@ function startTemplates() {
     var inShaped = $('input[name="shaped"]');
     var inHandles = $('select[name="handles"]');
     $("input[type=radio]").click(function () {
+        // @ts-ignore
         var index = parseInt(this.value);
-        if (index >= 0 && index < MODELS.length) {
-            inMeasures.val(MODELS[index].measures.toString().replace(/,/g, "*"));
-            inMeasures.prop('readonly', true);
-            inColor.val(MODELS[index].color.id);
-            inShaped.prop('checked', MODELS[index].shaped);
-            inShaped.prop('readonly', true);
-            inHandles.val(MODELS[index].handles);
-            inHandles.prop('readonly', true);
-        }
-        else {
-            inMeasures.val("");
-            inMeasures.prop('readonly', false);
-            inShaped.prop('readonly', false);
-            inHandles.prop('readonly', false);
-        }
+        if (index < 0 || index > MODELS.length)
+            return;
+        inMeasures.val(MODELS[index].measures.toString().replace(/,/g, "*"));
+        inColor.val(MODELS[index].color.id);
+        inShaped.prop('checked', MODELS[index].shaped);
+        inHandles.val(MODELS[index].handles);
+        var isCustom = index === 0;
+        inMeasures.prop('readonly', !isCustom);
+        inShaped.prop('readonly', !isCustom);
+        inHandles.prop('readonly', !isCustom);
     });
 }
 function createCase() {
-    var measures = [10, 10, 10];
-    if (flightCase != undefined)
-        measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
-    var stage = $("#stage"); //Sprite3D.stage();
+    var measures = [flightCase.measures[0], flightCase.measures[2], flightCase.measures[1]];
+    var stage = $("#stage");
+    // @ts-ignore
     var box = Sprite3D.box(measures[0], measures[1], measures[2], ".box1", flightCase.handles);
     box.rotate(-45, -45, 0).scale(2.5).update();
     stage.html(box);
     box.addEventListener("click", onBoxClick, false);
     //change case's color
     var color = flightCase.getColorName().toLowerCase();
-    $(".box1 > *").css('backgroundImage', 'url(../img/materials/' + color + '.jpg)');
+    $(".box1 > *").css('backgroundImage', 'url(/img/materials/' + color + '.jpg)');
     //change position
     box.addClass("box");
     function onBoxClick(e) {

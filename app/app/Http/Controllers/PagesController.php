@@ -25,16 +25,6 @@ class PagesController extends Controller {
         return view('login');
     }
 
-    public function order() {
-        $components_ = FlightCaseComponent::all();
-
-        $components = [];
-        foreach ($components_ as $c){
-            $components[$c->name] = $c->price;
-        }
-
-        return view('neworder', compact('components'));
-    }
 
     public function preventives() {
         if(Auth::user() == null) return view('login');

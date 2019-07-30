@@ -71,6 +71,6 @@
     <script src="{{ asset('js/cases.js') }}"></script>
     <script src="{{ asset('js/Sprite3D.js') }}"></script>
     <script src="{{ asset('js/order.js') }}"></script>
-    <script>createCase();</script>
+    <script>//createCase();</script>
 @endsection
 
