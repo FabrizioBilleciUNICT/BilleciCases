@@ -4,9 +4,19 @@
 @extends('layouts.admin_app')
 
 @section('content')
-    <p id="show-templates"></p>
+<div class="container-admin">
+    <div class="cardx-top">
+        <div class="cardx-dark">
+            <div class="card-body">
+                <p class="p-dashboard-header">Templates</p>
 
-    <script src="{{ asset('js/templates.js') }}"></script>
+                <p id="show-templates"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('js/templates.js') }}"></script>
 <script>
     $(document).ready(function() {
         $($('#mySidenav a')[3]).addClass('color-accent');

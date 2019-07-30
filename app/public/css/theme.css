@@ -420,10 +420,11 @@ a:hover {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: var(--c-td);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 160px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .sidenav a {
@@ -433,6 +434,7 @@ a:hover {
     color: #818181;
     display: block;
     transition: 0.3s;
+    font-weight: 400;
 }
 
 .sidenav a:hover {
@@ -450,6 +452,11 @@ a:hover {
 #app, #navbar {
     margin-left: 0;
     transition: margin-left .5s;
+}
+
+#app {
+    min-height: 100%;
+    background: var(--c-td-dark);
 }
 
 #nav-account {
@@ -477,18 +484,71 @@ a:hover {
 }
 
 .container-admin {
-    background: var(--c-td-dark);
     padding: 30px;
 }
 
-.card-dark-top {
+.cardx-top {
+    overflow: hidden;
+    width: 100%;
+    margin: auto;
+    margin-top: -100px;
+}
+.cardx-dark {
     background: var(--c-td);
-    width: 90%;
+    width: 100%;
     color: var(--accent1-c);
     border-radius: 5px;
     margin: auto;
-    margin-top: -75px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
 }
+
+.card-3col {
+    float: none;
+    width: 100%;
+    margin:0 0 10px 0;
+}
+
+.p-dashboard-header {
+    font-size: 18px;
+    line-height: 25px;
+    margin:10px 20px 20px 20px;
+    font-weight: 700;
+}
+
+.p-dashboard-value {
+    font-size: 22px;
+    line-height: 25px;
+    margin:20px 0 0 20px;
+    font-weight: 700;
+}
+
+.p-dashboard-title {
+    font-size: 14px;
+    line-height: 30px;
+    margin:0 0 0 20px;
+}
+
+.card-dashboard-text {
+    float: left;
+    flex-grow: 1;
+}
+
+.card-dashboard-text > div {
+    margin: auto;
+}
+
+.card-dashboard-image {
+    float: left;
+    width: 80px;
+    height: 80px;
+}
+
+.card-dashboard-image > img {
+    width: 80px;
+    height: 80px;
+}
+
 
 
 .color-accent {
@@ -578,6 +638,46 @@ a:hover {
 
     #app, #navbar {
         margin-left: 250px;
+    }
+
+    .cardx-top {
+    }
+    .cardx-dark {
+        background: var(--c-td);
+        color: var(--accent1-c);
+        border-radius: 5px;
+        margin: 0 0 10px 0.5%;
+        width: 98%;
+    }
+
+    .card-3col {
+        float: left;
+        width: 32%;
+        margin:0 0.5% 10px 0.5%;
+    }
+
+    .card-dashboard-image {
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+
+    .card-dashboard-image > img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .p-dashboard-value {
+        font-size: 28px;
+        line-height: 30px;
+        margin:20px 0 0 20px;
+        font-weight: 700;
+    }
+
+    .p-dashboard-title {
+        font-size: 16px;
+        line-height: 30px;
+        margin:0 0 0 20px;
     }
 
     /** NAVIGATION **/

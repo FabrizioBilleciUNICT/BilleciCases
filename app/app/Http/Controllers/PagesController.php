@@ -39,7 +39,9 @@ class PagesController extends Controller {
         if(Auth::user() == null) return view('login');
 
         if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {//superuser
-            return view('admin_dashboard');
+            $orders_ = Order::all();
+            $orders = $orders_->where('status', $orders_->get('status'), "0");
+            return view('admin_dashboard', compact('orders'));
         } else {
             $preventives_ = Order::all();
             $preventives = $preventives_->where('name', $preventives_->get('name'), Auth::user()->name);
