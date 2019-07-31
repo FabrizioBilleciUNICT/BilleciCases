@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
+    public const STATUS_ORDER = ["Sent", "Read", "Building", "Ready", "Done"];
+
     public function components() {
         if(Auth::user() == null) return view('login');
 

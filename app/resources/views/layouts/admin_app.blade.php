@@ -16,6 +16,8 @@
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/navigation.js') }}" defer></script>
 
@@ -27,6 +29,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css">
 </head>
 <body>
     <div id="mySidenav" class="sidenav">
@@ -37,7 +40,7 @@
         <a href="{{ url('/components') }}">Components</a>
     </div>
 
-    <div id="app">
+    <div id="app-admin">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" id="navbar">
             <div class="container">
                 <img id="open-nav" onclick="openNav()" src="{{asset('img/menu.png')}}">

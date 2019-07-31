@@ -8,7 +8,7 @@
                 <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
-                        <p id="p-dashboard-clients" class="p-dashboard-value">0</p>
+                        <p id="p-dashboard-clients" class="p-dashboard-value">{{$clients}}</p>
                         <p class="p-dashboard-title">CLIENTS</p>
                     </div>
                 </div>
@@ -17,10 +17,10 @@
 
         <div class="cardx-dark card-3col">
             <div class="card-body" style="display: flex;">
-                <div class="card-dashboard-image"><img width="100" height="100" src="{{asset('img/menu.png')}}"></div>
+                <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
-                        <p id="p-dashboard-works" class="p-dashboard-value">0</p>
+                        <p id="p-dashboard-works" class="p-dashboard-value">{{$works}}</p>
                         <p class="p-dashboard-title">WORKS</p>
                     </div>
                 </div>
@@ -29,10 +29,10 @@
 
         <div class="cardx-dark card-3col">
             <div class="card-body" style="display: flex;">
-                <div class="card-dashboard-image"><img width="100" height="100" src="{{asset('img/menu.png')}}"></div>
+                <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
-                        <p id="p-dashboard-earned" class="p-dashboard-value">0€</p>
+                        <p id="p-dashboard-earned" class="p-dashboard-value">{{$earned}}€</p>
                         <p class="p-dashboard-title">EARNED</p>
                     </div>
                 </div>

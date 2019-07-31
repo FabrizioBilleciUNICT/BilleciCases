@@ -11,7 +11,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
  * @property mixed measures
  * @property  mixed name
  * @property  mixed email
- * @property int status
+ * @property mixed status
  * @property mixed shaped
  * @property mixed handles
  * @property mixed price

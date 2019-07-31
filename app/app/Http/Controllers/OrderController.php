@@ -54,7 +54,7 @@ class OrderController extends Controller
         $order->price = $request->get('price');
         $order->name = Auth::user()->name;
         $order->email = Auth::user()->email;
-        $order->status = 0;
+        $order->status = AdminController::STATUS_ORDER[0];
 
         $order->save();
         return redirect('dashboard')->with('success', 'Order has been successfully added');

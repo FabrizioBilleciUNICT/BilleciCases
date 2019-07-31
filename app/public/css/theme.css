@@ -235,6 +235,28 @@ a:hover {
     padding: 5px;
 }
 
+.table select {
+    background: var(--c-td-dark);
+    color: #fff;
+    text-align: center;
+}
+
+.table .form-control {
+    font-size: 11px;
+    padding: 1px;
+    background: var(--c-td-dark);
+    color: #fff;
+    text-align: center;
+}
+.table .form-control:focus {
+    background: var(--c-td);
+    color: #fff;
+}
+.fixed-table-container tbody td .th-inner, .fixed-table-container thead th .th-inner {
+    font-size: 12px;
+    text-align: center;
+}
+
 
 .card {
     width: 100%;
@@ -449,14 +471,18 @@ a:hover {
     margin-left: 50px;
 }
 
-#app, #navbar {
+#app-admin, #navbar {
     margin-left: 0;
     transition: margin-left .5s;
 }
 
-#app {
+#app-admin {
     min-height: 100%;
     background: var(--c-td-dark);
+}
+
+#app-admin .table {
+    color: var(--accent1-c);
 }
 
 #nav-account {
@@ -539,6 +565,7 @@ a:hover {
 }
 
 .card-dashboard-image {
+    margin: auto;
     float: left;
     width: 80px;
     height: 80px;
@@ -549,7 +576,15 @@ a:hover {
     height: 80px;
 }
 
+.card-templates-text p {
+    margin: 0 0 0 20px;
+    font-size: 12px;
+}
 
+.card-templates-text p:nth-child(1) {
+    font-size: 14px;
+    font-weight: bold;
+}
 
 .color-accent {
     color: var(--primary) !important;
@@ -583,7 +618,7 @@ a:hover {
 
     .table {
         width: 100%;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .table a {
@@ -636,7 +671,7 @@ a:hover {
         display: none;
     }
 
-    #app, #navbar {
+    #app-admin, #navbar {
         margin-left: 250px;
     }
 

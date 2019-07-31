@@ -5,14 +5,7 @@
 
 @section('content')
 <div class="container-admin">
-    <div class="cardx-top">
-        <div class="cardx-dark">
-            <div class="card-body">
-                <p class="p-dashboard-header">Templates</p>
-
-                <p id="show-templates"></p>
-            </div>
-        </div>
+    <div class="cardx-top" id="card-templates">
     </div>
 </div>
 
