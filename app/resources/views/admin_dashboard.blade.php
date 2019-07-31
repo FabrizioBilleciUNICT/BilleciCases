@@ -1,3 +1,6 @@
+<script>
+    var orders = {!! json_encode($orders, JSON_HEX_TAG) !!};
+</script>
 @extends('layouts.admin_app')
 
 @section('content')
@@ -77,13 +80,15 @@
     <div class="cardx-dark">
         <div class="card-body">
             <p class="p-dashboard-header">Stats</p>
-
+            <canvas id="chart-container"></canvas>
         </div>
     </div>
 </div>
+<script src="{{ asset('js/stats.js') }}"></script>
 <script>
     $(document).ready(function() {
         $($('#mySidenav a')[1]).addClass('color-accent');
+        initChart();
     });
 </script>
 @endsection

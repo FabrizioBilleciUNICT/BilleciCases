@@ -1,6 +1,7 @@
 var PRICE_BLACK : number, PRICE_BLUE : number, PRICE_RED : number, PRICE_YELLOW : number;
 var PRICE_HANDLE : number, PRICE_SURFACE : number, PRICE_SHAPED : number, PRICE_NO_SHAPED : number;
 var colors = {};
+var states = [];
 var MODELS = {};
 
 interface IFlightCase {
@@ -101,6 +102,9 @@ $(document).ready(function() {
         'Telescope' : MODEL3,
         'Cables' : MODEL4
     };
+
+    // @ts-ignore
+    states = order_states;
 });
 
 

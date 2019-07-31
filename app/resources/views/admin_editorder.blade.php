@@ -2,6 +2,7 @@
     var components = {!! json_encode($components, JSON_HEX_TAG) !!};
     var templates = {!! json_encode($templates, JSON_HEX_TAG) !!};
     var order = {!! json_encode($order, JSON_HEX_TAG) !!};
+    var order_states = {!! json_encode($states, JSON_HEX_TAG) !!};
 </script>
 @extends('layouts.app')
 
@@ -16,6 +17,12 @@
                 </div>
                 <form id="formeditorder" method="post" action="{{action('OrderController@edit', $order->id)}}">
                     @csrf
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="form-group col-md-4">
+                            <label for="status">Status</label>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="form-group col-md-4">

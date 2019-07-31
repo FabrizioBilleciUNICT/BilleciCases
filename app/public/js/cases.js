@@ -1,6 +1,7 @@
 var PRICE_BLACK, PRICE_BLUE, PRICE_RED, PRICE_YELLOW;
 var PRICE_HANDLE, PRICE_SURFACE, PRICE_SHAPED, PRICE_NO_SHAPED;
 var colors = {};
+var states = [];
 var MODELS = {};
 var FlightCase = /** @class */ (function () {
     function FlightCase(name, color, measures, shaped, handles) {
@@ -69,4 +70,6 @@ $(document).ready(function () {
         'Telescope': MODEL3,
         'Cables': MODEL4
     };
+    // @ts-ignore
+    states = order_states;
 });

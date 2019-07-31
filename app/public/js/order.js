@@ -17,6 +17,9 @@ $(document).ready(function () {
         calculateNewPrice($('#formorder'));
     }
     if (feo != undefined) {
+        addStatusOptions();
+        // @ts-ignore
+        $('select[name="status"]').val(order['status']);
         // @ts-ignore
         $('select[name="color"]').val(order['color']);
         feo.addEventListener('change', function (e) {
@@ -35,7 +38,7 @@ function calculateNewPrice(form) {
     var name = "Custom";
     if (parseInt(values['type']) > -1)
         name = MODELS[parseInt(values['type'])].name;
-    flightCase = new FlightCase(name, values['color'], values['measures'], values['shaped'] === "on", values['handles']);
+    flightCase = new FlightCase(name, values['color'], values['measures'], !!values['shaped'], values['handles']);
     createCase();
     return flightCase.getPrice();
 }
@@ -63,6 +66,13 @@ function submitForm(form) {
         alert("Measures must have format: x*y*z");
     else
         form.submit();
+}
+function addStatusOptions() {
+    var options = "";
+    states.forEach(function (element) {
+        options += "<option value=" + element + ">" + element + "</option>";
+    });
+    $('label[for="status"]').after("<select class=\"form-control\" name=\"status\">" + options + "</select>");
 }
 function addColorOptions() {
     var options = "";

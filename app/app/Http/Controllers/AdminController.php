@@ -12,11 +12,15 @@ class AdminController extends Controller
 {
 
     public const STATUS_ORDER = ["Sent", "Read", "Building", "Ready", "Done"];
+    
+    public static function isAdmin(){
+        return (Auth::user()->email === 'fabriziobilleci7@gmail.com');
+    }
 
     public function components() {
         if(Auth::user() == null) return view('login');
 
-        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') { //superuser
+        if(self::isAdmin()) { //superuser
             $components_ = FlightCaseComponent::all();
 
             $components = [];
@@ -43,7 +47,7 @@ class AdminController extends Controller
     public function createComponents(){
         if(Auth::user() == null) return view('login');
 
-        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {
+        if(self::isAdmin()) {
             $components = FlightCaseComponent::all();
             if(count($components) > 0) FlightCaseComponent::truncate();
 
@@ -89,7 +93,7 @@ class AdminController extends Controller
     public function templates() {
         if(Auth::user() == null) return view('login');
 
-        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') { //superuser
+        if(self::isAdmin()) { //superuser
             $templates_ = FlightCaseTemplate::all();
 
             $templates = [];
@@ -126,7 +130,7 @@ class AdminController extends Controller
     public function createTemplates(){
         if(Auth::user() == null) return view('login');
 
-        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {
+        if(self::isAdmin()) {
             $templates = FlightCaseTemplate::all();
             if(count($templates) > 0) FlightCaseTemplate::truncate();
 
@@ -136,7 +140,7 @@ class AdminController extends Controller
             $this->createTemplate('Telescope', 'Yellow', '100*60*60', '1', '4')->save();
             $this->createTemplate('Cables', 'Blue', '60*50*50', '0', '4')->save();
 
-            return redirect('admin_templates');
+            return redirect('templates');
         }
 
         return redirect('welcome');
@@ -145,7 +149,7 @@ class AdminController extends Controller
     public function orders() {
         if(Auth::user() == null) return view('login');
 
-        if(Auth::user()->email === 'fabriziobilleci7@gmail.com') {//superuser
+        if(self::isAdmin()) {//superuser
             $preventives = Order::all();
             return view('admin_orders', compact('preventives'));
         }

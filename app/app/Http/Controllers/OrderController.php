@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\FlightCaseComponent;
 use App\FlightCaseTemplate;
 use App\Order;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +39,9 @@ class OrderController extends Controller
     public function newOrder() {
         $components = $this->getAllComponents();
         $templates = $this->getAllTemplates();
-        return view('neworder', compact('components'), compact('templates'));
+        $states = AdminController::STATUS_ORDER;
+
+        return view('neworder', compact('components', 'templates', 'states'));
     }
 
     public function store(Request $request) {
@@ -65,24 +66,29 @@ class OrderController extends Controller
         $templates = $this->getAllTemplates();
         $order = Order::find($id);
 
-        return view('editorder',compact('order','id', 'components', 'templates'));
+        $states = AdminController::STATUS_ORDER;
+
+        return view('admin_editorder',compact('order','id', 'components', 'templates', 'states'));
     }
 
     public function update(Request $request, $id) {
         $order = Order::find($id);
+        $order->status = $request->get('status');
         $order->measures = $request->get('measures');
         $order->color = $request->get('color');
         $order->price = $request->get('price');
         $order->save();
 
-        return redirect('dashboard')->with('success', 'Order has been successfully update');
+        $preventives = Order::all();
+        return redirect('orders')->with('preventives', $preventives);
     }
 
     public function delete($id) {
         $order = Order::find($id);
         $order->delete();
 
-        return redirect('dashboard')->with('success','Order has been deleted');
+        $preventives = Order::all();
+        return redirect('orders')->with('preventives', $preventives);
     }
 
 }

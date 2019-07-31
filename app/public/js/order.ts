@@ -22,6 +22,9 @@ $(document).ready(function(){
     }
 
     if(feo!=undefined) {
+        addStatusOptions();
+        // @ts-ignore
+        $('select[name="status"]').val(order['status']);
         // @ts-ignore
         $('select[name="color"]').val(order['color']);
         feo.addEventListener('change', function (e) {
@@ -47,7 +50,7 @@ function calculateNewPrice(form): number {
         name,
         values['color'],
         values['measures'],
-        values['shaped'] === "on",
+        !!values['shaped'],
         values['handles']);
     createCase();
 
@@ -88,6 +91,16 @@ function submitForm(form){
 
     if(!submitable) alert("Measures must have format: x*y*z");
     else form.submit();
+}
+
+function addStatusOptions() {
+    let options = "";
+
+    states.forEach(function(element) {
+        options +=  "<option value="+ element +">" + element  + "</option>";
+    });
+
+    $('label[for="status"]').after("<select class=\"form-control\" name=\"status\">" + options + "</select>");
 }
 
 function addColorOptions() {
