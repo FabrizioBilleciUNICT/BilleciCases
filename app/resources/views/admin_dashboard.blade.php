@@ -1,5 +1,5 @@
 <script>
-    var orders = {!! json_encode($orders, JSON_HEX_TAG) !!};
+    var orders = {!! json_encode($done_orders, JSON_HEX_TAG) !!};
 </script>
 @extends('layouts.admin_app')
 
@@ -8,7 +8,7 @@
     <div class="cardx-top">
         <div class="cardx-dark card-3col">
             <div class="card-body" style="display: flex;">
-                <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
+                <div class="card-dashboard-image"><img src="{{asset('img/clients.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
                         <p id="p-dashboard-clients" class="p-dashboard-value">{{$clients}}</p>
@@ -20,7 +20,7 @@
 
         <div class="cardx-dark card-3col">
             <div class="card-body" style="display: flex;">
-                <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
+                <div class="card-dashboard-image"><img src="{{asset('img/works.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
                         <p id="p-dashboard-works" class="p-dashboard-value">{{$works}}</p>
@@ -32,7 +32,7 @@
 
         <div class="cardx-dark card-3col">
             <div class="card-body" style="display: flex;">
-                <div class="card-dashboard-image"><img src="{{asset('img/menu.png')}}"></div>
+                <div class="card-dashboard-image"><img src="{{asset('img/earned.png')}}"></div>
                 <div class="card-dashboard-text">
                     <div>
                         <p id="p-dashboard-earned" class="p-dashboard-value">{{$earned}}€</p>

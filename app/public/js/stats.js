@@ -1,49 +1,45 @@
 var data;
 var timeFormat = 'YYYY-MM-DD';
 function initChart() {
-    // @ts-ignore
-    //console.log(orders);
     var canvas = document.getElementById("chart-container");
     // @ts-ignore
     var ctx = canvas.getContext('2d');
     var conf = confMap();
     // @ts-ignore
+    Chart.defaults.global.defaultFontColor = '#ECF2F9';
+    // @ts-ignore
     new Chart(ctx, conf);
 }
 function setMap() {
     var map = {};
-    map["Custom"] = {
-        label: "Custom",
-        data: [],
-        fill: false,
-        borderColor: '#b092e4'
-    };
-    map["Pizza"] = {
-        label: "Pizza",
-        data: [],
-        fill: false,
-        borderColor: '#6ed673'
-    };
-    map["Cables"] = {
-        label: "Cables",
-        data: [],
-        fill: false,
-        borderColor: '#f3cd48'
-    };
-    map["Telescope"] = {
-        label: "Telescope",
-        data: [],
-        fill: false,
-        borderColor: '#ff8176'
-    };
-    map["Piano"] = {
-        label: "Piano",
-        data: [],
-        fill: false,
-        borderColor: '#61b7fb'
-    };
+    var types = {};
+    var mOrders = [];
+    var colors = ['#b092e4', '#6ed673', '#f3cd48', '#ff8176', '#61b7fb'];
+    var i = 0;
     // @ts-ignore
-    orders.forEach(function (element) {
+    if (!Array.isArray(orders)) {
+        // @ts-ignore
+        for (var key in orders) {
+            // @ts-ignore
+            mOrders.push(orders[key]);
+        }
+    }
+    else
+        // @ts-ignore
+        mOrders = orders.slice();
+    mOrders.forEach(function (element) {
+        if (!types.hasOwnProperty(element['type'])) {
+            types[element['type']] = colors[i];
+            i++;
+        }
+        map[element['type']] = {
+            label: element['type'],
+            data: [],
+            fill: false,
+            borderColor: types[element['type']]
+        };
+    });
+    mOrders.forEach(function (element) {
         var m = map[element['type']]['data'];
         var n = {
             x: element['created_at'].split(" ")[0],
@@ -87,7 +83,7 @@ function confMap() {
                 yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'value'
+                            labelString: 'Price'
                         }
                     }]
             }

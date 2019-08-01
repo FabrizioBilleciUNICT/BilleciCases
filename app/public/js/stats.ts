@@ -2,71 +2,57 @@ var data;
 var timeFormat = 'YYYY-MM-DD';
 
 function initChart(){
-    // @ts-ignore
-    //console.log(orders);
-
     var canvas = document.getElementById("chart-container");
     // @ts-ignore
     var ctx = canvas.getContext('2d');
-
     var conf = confMap();
-
+    // @ts-ignore
+    Chart.defaults.global.defaultFontColor = '#ECF2F9';
     // @ts-ignore
     new Chart(ctx, conf);
 }
 
-
 function setMap(){
     let map = {};
-    map["Custom"] = {
-        label: "Custom",
-        data: [],
-        fill: false,
-        borderColor: '#b092e4'
-    };
-
-    map["Pizza"] = {
-        label: "Pizza",
-        data: [],
-        fill: false,
-        borderColor: '#6ed673'
-    };
-
-    map["Cables"] = {
-        label: "Cables",
-        data: [],
-        fill: false,
-        borderColor: '#f3cd48'
-    };
-
-    map["Telescope"] = {
-        label: "Telescope",
-        data: [],
-        fill: false,
-        borderColor: '#ff8176'
-    };
-
-    map["Piano"] = {
-        label: "Piano",
-        data: [],
-        fill: false,
-        borderColor: '#61b7fb'
-    };
-
+    let types = {};
+    let mOrders = [];
+    let colors = ['#b092e4', '#6ed673', '#f3cd48', '#ff8176', '#61b7fb'];
+    let i = 0;
     // @ts-ignore
-    orders.forEach(function (element) {
+    if(!Array.isArray(orders)) {
+        // @ts-ignore
+        for(let key in orders){
+            // @ts-ignore
+            mOrders.push(orders[key]);
+        }
+    } else
+        // @ts-ignore
+        mOrders = orders.slice();
+
+    mOrders.forEach(function (element) {
+        if(!types.hasOwnProperty(element['type'])) {
+            types[element['type']] = colors[i];
+            i++;
+        }
+        map[element['type']] = {
+          label: element['type'],
+          data: [],
+          fill: false,
+          borderColor: types[element['type']]
+        };
+    });
+
+    mOrders.forEach(function (element) {
         let m = map[element['type']]['data'];
         let n = {
             x: element['created_at'].split(" ")[0],
             y: parseInt(element['price'])
         };
-
         if(m === []) m = n;
         else m.push(n);
 
         map[element['type']]['data'] = m;
     });
-
 
     data = [];
     for (let key in map) data.push(map[key]);
@@ -100,7 +86,7 @@ function confMap(){
                 yAxes: [{
                     scaleLabel: {
                         display:     true,
-                        labelString: 'value'
+                        labelString: 'Price'
                     }
                 }]
             }

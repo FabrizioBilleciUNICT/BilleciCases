@@ -29,7 +29,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" id="navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class="navbar-icon" src="{{asset("img/icon.png")}}">{{ config('app.name', 'Billeci Cases') }}
@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 main-content">
             @yield('content')
         </main>
     </div>

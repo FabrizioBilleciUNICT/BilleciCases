@@ -45,7 +45,7 @@ class PagesController extends Controller {
             $done_orders = $orders_->where('status', $orders_->get('status'), AdminController::STATUS_ORDER[4]);
             $earned = 0 + $done_orders->reduce(function($carry, $value) { return $carry + (int)$value['price']; });
 
-            return view('admin_dashboard', compact('clients', 'orders', 'works', 'earned'));
+            return view('admin_dashboard', compact('clients', 'orders', 'works', 'earned', 'done_orders'));
         } else {
             $preventives_ = Order::all();
             $preventives = $preventives_->where('name', $preventives_->get('name'), Auth::user()->name);
