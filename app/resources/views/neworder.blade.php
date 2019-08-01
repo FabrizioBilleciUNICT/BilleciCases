@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container-admin">
-        <div class="cardx-top card-alone">
+    <div class="cardx-top card-alone">
         <div class="cardx-dark">
             <div class="card-body">
                 <p class="p-dashboard-header">New Order</p>

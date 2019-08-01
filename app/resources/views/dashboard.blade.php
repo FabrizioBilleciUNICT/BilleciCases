@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-header">Dashboard</div>
-
-        <div class="card-body">
-            <table class="table">
+<div class="container-admin">
+    <div class="cardx-top card-alone">
+        <div class="cardx-dark">
+            <div class="card-body">
+                <p class="p-dashboard-header">Dashboard</p>
+                <table class="table">
                 <thead>
                 <tr>
                     <th>Type</th>
@@ -37,6 +37,7 @@
             <button class="btn-standard" style="position: sticky; left: 0px;">
                 <a href="{{action('OrderController@newOrder')}}">New Case</a>
             </button>
+        </div>
         </div>
     </div>
 </div>

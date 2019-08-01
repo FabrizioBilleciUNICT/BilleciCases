@@ -7,11 +7,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <p><a href="/dashboard" class="nav-back">&#8617; DASHBOARD</a></p>
-        <div class="card">
-            <div class="card-header">Edit Order</div>
+<div class="container-admin">
+    <div class="cardx-top card-alone">
+        <div class="cardx-dark">
             <div class="card-body">
+                <p class="p-dashboard-header">Edit Order</p>
+                <p><a href="/dashboard" class="nav-back">&#8617; DASHBOARD</a></p>
                 <div class="stage-container">
                     <div id="stage"></div>
                 </div>
@@ -66,8 +67,9 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/cases.js') }}"></script>
-    <script src="{{ asset('js/Sprite3D.js') }}"></script>
-    <script src="{{ asset('js/order.js') }}"></script>
-    <script>//createCase();</script>
+</div>
+<script src="{{ asset('js/cases.js') }}"></script>
+<script src="{{ asset('js/Sprite3D.js') }}"></script>
+<script src="{{ asset('js/order.js') }}"></script>
+<script>//createCase();</script>
 @endsection

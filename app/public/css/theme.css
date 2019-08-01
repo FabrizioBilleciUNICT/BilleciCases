@@ -408,12 +408,14 @@ a:hover {
 }
 
 .p-info {
+    margin: 0 20px 20px 20px;
     font-size: 18px;
 }
 
-.p-info + a {
-    color: var(--c-dark);
+.p-info a {
+    color: var(--c-light);
     font-size: 16px;
+    text-align: center;
 }
 
 #features {
@@ -594,6 +596,10 @@ a:hover {
     width: 100%;
 }
 
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
 
 @media only screen and (min-width: 600px) {}
 
