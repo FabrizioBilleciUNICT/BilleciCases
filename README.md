@@ -2,16 +2,23 @@
 ##### Build and order your flight cases online easily
 ---
 
+##### [ADMIN: EDIT AN ORDER]
+Administrators can change the state of the order: if it has been received, it is under construction, ready for delivery or delivered.
+##### [ADMIN: DELETE AN ORDER]
+Administrators can delete an order.
+##### [ADMIN: DASHBOARD]
+Dashboard shows current works, earning, new orders and some statics about price and orders' type, over the time, within a Lines' Chart.
+##### [ADMIN: TEMPLATES & COMPONENTS]
+Administrators can create or update templates and components for the clients' orders.
+
 ##### [DASHBOARD]
-Displays the orders placed with their parameters, price and development status. Create new order or edit/delete the existing orders.
+Displays the orders placed with their parameters, price and development status and create new order.
 ##### [CREATE AN ORDER]
 Specifies the type of flight-cases required (for: pizza, piano, telescope, cables) in which there are default settings, or select the "Custom" type for customizable measurements and others.
-##### [EDIT AN ORDER]
-If the order has not yet been physically developed, you can change some parameters and update the order.
-##### [DELETE AN ORDER]
-If the order has not yet been physically developed, you can delete it for free.
+
 
 ### Features
+- Administrators space for create/update components, have business statics, edit/delete orders, see new orders
 - Real-Time **price** (re)calculation
 - Create, Read, Update, Delete orders easily
 - **Responsive** WebPages
@@ -22,6 +29,8 @@ If the order has not yet been physically developed, you can delete it for free.
 - Bootstrap
 - Typescript/Javascript
 - jQuery
+- Chart.js 
+- Moment.js
 
 ### Specs [Server-Side]
 - Laravel MVC
