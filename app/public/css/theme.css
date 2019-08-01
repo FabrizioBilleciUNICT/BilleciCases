@@ -451,7 +451,7 @@ a:hover {
     box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.sidenav a {
+.sidenav > a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -461,7 +461,13 @@ a:hover {
     font-weight: 400;
 }
 
-.sidenav a:hover {
+.sidenav ul {
+    display: block;
+    font-size: 14px;
+    padding: 8px 8px 8px 32px;
+}
+
+.sidenav > a:hover {
     color: #f1f1f1;
 }
 
@@ -601,6 +607,8 @@ a:hover {
     margin-left: 0;
 }
 
+
+
 @media only screen and (min-width: 600px) {}
 
 @media only screen and (min-width: 950px) and (orientation: landscape) {
@@ -671,10 +679,14 @@ a:hover {
         padding-top: 60px;
     }
 
-    .sidenav a {
+    .sidenav > a {
         padding: 8px 8px 8px 32px;
         font-size: 25px;
         color: #818181;
+    }
+
+    .sidenav ul {
+        display: none;
     }
 
     .sidenav .closebtn, #open-nav {
