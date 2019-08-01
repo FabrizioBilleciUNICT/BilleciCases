@@ -44,6 +44,7 @@ php, composer, npm, mongodb-org
 ```
 ### Installation
 1. Download this repository
+2. Go to 'app/Http/Controllers/AdminController.php' to change admin's email
 2. Go to 'app' directory with terminal
 3. Start Apache Server Service
 4. From shell(1)  ```$ mongod --ipv6``` start mongo-service
