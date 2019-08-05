@@ -19,6 +19,7 @@ Specifies the type of flight-cases required (for: pizza, piano, telescope, cable
 
 ### Features
 - Administrators space for create/update components, have business statics, edit/delete orders, see new orders
+- Flight-Case's 3D visualization 
 - Real-Time **price** (re)calculation
 - Create, Read, Update, Delete orders easily
 - **Responsive** WebPages
@@ -31,6 +32,7 @@ Specifies the type of flight-cases required (for: pizza, piano, telescope, cable
 - jQuery
 - Chart.js 
 - Moment.js
+- Sprite3D.js
 
 ### Specs [Server-Side]
 - Laravel MVC
