@@ -9,11 +9,11 @@ Administrators can delete an order.
 ##### [ADMIN: DASHBOARD]
 Dashboard shows current works, earning, new orders and some statics about price and orders' type, over the time, within a Lines' Chart.
 ##### [ADMIN: TEMPLATES & COMPONENTS]
-Administrators can create or update templates and components for the clients' orders.
+Administrators can create or update templates and components for the customers' orders.
 
-##### [DASHBOARD]
+##### [Customers: DASHBOARD]
 Displays the orders placed with their parameters, price and development status and create new order.
-##### [CREATE AN ORDER]
+##### [Customers: CREATE AN ORDER]
 Specifies the type of flight-cases required (for: pizza, piano, telescope, cables) in which there are default settings, or select the "Custom" type for customizable measurements and others.
 
 
