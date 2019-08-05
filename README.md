@@ -1,5 +1,5 @@
 # BilleciCases
-##### Build and order your flight cases online easily
+##### A Laravel app which allows customers to order flight-cases and at the administrator to read, update, delete and develop the orders.
 ---
 
 ##### [ADMIN: EDIT AN ORDER]
