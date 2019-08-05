@@ -48,7 +48,7 @@ php, composer, npm, mongodb-org
 1. Download or clone this repository
 2. Go to 'app/Http/Controllers/AdminController.php' to change admin's email
 2. Go to 'app' directory with terminal
-4. Run ```$ composer install``` and then ```$ composer update```
+4. Run ```$ composer install```
 5. Copy/Paste '.env.example' file and rename it in '.env'. Then run ```$ php artisan key:gen```
 3. Start Apache Server Service
 4. From shell(1)  ```$ mongod --ipv6``` start mongo-service
