@@ -1,21 +1,6 @@
 # BilleciCases
-##### A Laravel app which allows customers to order flight-cases and at the administrator to read, update, delete and develop the orders.
----
-
-##### [ADMIN: EDIT AN ORDER]
-Administrators can change the state of the order: if it has been received, it is under construction, ready for delivery or delivered.
-##### [ADMIN: DELETE AN ORDER]
-Administrators can delete an order.
-##### [ADMIN: DASHBOARD]
-Dashboard shows current works, earning, new orders and some statics about price and orders' type, over the time, within a Lines' Chart.
-##### [ADMIN: TEMPLATES & COMPONENTS]
-Administrators can create or update templates and components for the customers' orders.
-
-##### [Customers: DASHBOARD]
-Displays the orders placed with their parameters, price and development status and create new order.
-##### [Customers: CREATE AN ORDER]
-Specifies the type of flight-cases required (for: pizza, piano, telescope, cables) in which there are default settings, or select the "Custom" type for customizable measurements and others.
-
+Customers can view their orders and their status (sent, read, building, ready) and make new orders by choosing the type of flightcase they want and some additional options. The administrator has some tools available to view new orders, customer statistics and the number of flight cases built. He can filter, modify and delete orders, update component prices and upload templates.
+![Screenshot](/images/ss0.png)
 
 ### Features
 - Administrators space for create/update components, have business statics, edit/delete orders, see new orders
@@ -46,14 +31,27 @@ php, composer, npm, mongodb-org
 ```
 ### Installation
 1. Download or clone this repository
-2. Go to 'app/Http/Controllers/AdminController.php' to change admin's email
 2. Go to 'app' directory with terminal
-4. Run ```$ composer install```
-5. Copy/Paste '.env.example' file and rename it in '.env'. Then run ```$ php artisan key:gen```
-3. Start Apache Server Service
-4. From shell(1)  ```$ mongod --ipv6``` start mongo-service
-5. From shell(2) ```$ php artisan serve``` serve application to localhost:8000
+3. Run ```$ composer install```
+4. Copy/Paste '.env.example' file and rename it in '.env'. Then run ```$ php artisan key:gen```
+5. Start Apache Server Service
+6. From shell(1)  ```$ mongod --ipv6``` start mongo-service
+7. From shell(2) ```$ php artisan serve``` serve application to localhost:8000
+
+### Access credentials
+To run BilleciCases as administrator:
+1. Register as a new user from 'localhost:8000/register'
+2. Go to 'app/Http/Controllers/AdminController.php@isAdmin()' and change admin's email with yours.
+
 
 ### License 
 GNU General Public License v3.0
 Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
+
+### Author
+BilleciCases has been developed by Fabrizio Billeci. Computer Science student at University of Catania, Italy. 
+
+##### Contacts
+- Email: fabriziobilleci3@gmail.com
+- LinkedIn: https://www.linkedin.com/in/fabrizio-billeci-7a7494100/
+
